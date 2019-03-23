@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/HIRestApp">
+  <!--<Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="heer" password="coolsummer" type="javax.sql.DataSource" url="jdbc:mysql://127.0.0.1:3306/heer?zeroDateTimeBehavior=convertToNull" username="root"/>-->
+  <Resource driverClassName="com.mysql.jdbc.Driver" name="heer" password="coolsummer" type="javax.sql.DataSource" url="jdbc:mysql://127.0.0.1:3306/heer?zeroDateTimeBehavior=convertToNull" username="root"/>
+</Context>

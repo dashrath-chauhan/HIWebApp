@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AircraftReportColumnIndex" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30" uuid="6e843fe2-ce72-4257-a4c3-1df03728dc95">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="16"/>
+	<field name="COLUMN_0" class="java.lang.String"/>
+	<field name="COLUMN_1" class="java.lang.String"/>
+	<field name="COLUMN_2" class="java.lang.String"/>
+	<field name="COLUMN_3" class="java.lang.String"/>
+	<title>
+		<band height="145">
+			<staticText>
+				<reportElement x="265" y="65" width="182" height="20" forecolor="#0033FF" uuid="27475233-c728-4beb-a753-f8ece8a71a5c"/>
+				<text><![CDATA[Website:  www.heerinternational.com ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="95" y="0" width="365" height="34" forecolor="#0033FF" uuid="62005827-2a44-40bb-b1cc-27dc6d049f98"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Heer International]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="65" width="108" height="20" forecolor="#0033FF" uuid="8439fa1c-fcaa-4670-8a59-ea154fea073a"/>
+				<text><![CDATA[Mo: +91 9558731489]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="34" width="365" height="31" forecolor="#0033FF" uuid="e4d45f5f-9c65-474b-9daf-3d3a84740cb1"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[224, Paradise Complex, Sayaji Ganj, Vadodara - 390020, Near Kala Ghoda, Opposite M S University ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="101" width="555" height="3" forecolor="#000000" uuid="0c06507a-21cd-4291-8c3f-c41bd88d2b62"/>
+			</line>
+			<line>
+				<reportElement x="0" y="144" width="555" height="1" forecolor="#000000" uuid="78db59ca-63f4-4f22-8355-386fb9b122b8"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="93" y="110" width="365" height="34" forecolor="#0033FF" uuid="c80be6d8-7521-40f5-bd3b-27a8bff8758b"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inquries Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="14" width="51" height="24" forecolor="#0033FF" uuid="012424cf-712d-4e84-9906-776e1850b85a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="14" width="94" height="24" forecolor="#0033FF" uuid="724d23ca-6ad1-4be5-bae1-77c07dd31ba0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="14" width="119" height="24" forecolor="#0033FF" uuid="1e85a3f6-ba9d-47a7-8f25-cf37f5b4448d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Country Preferences]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="447" y="14" width="108" height="24" forecolor="#0033FF" uuid="044a8958-4960-4fa3-9cd6-c594595c521a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Date Created]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="56" width="555" height="1" forecolor="#000000" uuid="73536ab3-194d-479f-92dd-c67b21173df5"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="57" forecolor="#000000" uuid="0a1f48f6-9c0b-4730-8f17-85a04bc63278"/>
+			</line>
+			<line>
+				<reportElement x="555" y="-1" width="1" height="57" forecolor="#000000" uuid="114d4268-6778-4c84-9960-6559e26b6a10"/>
+			</line>
+			<staticText>
+				<reportElement x="326" y="14" width="108" height="24" forecolor="#0033FF" uuid="57d42fd7-af4c-48d0-993c-5ce312372e37"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Mobile]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="78" splitType="Stretch">
+			<textField>
+				<reportElement x="16" y="24" width="48" height="24" forecolor="#003333" uuid="d844cada-1aa4-4208-9fc1-dcdf62a72235"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_0}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="24" width="94" height="24" forecolor="#003333" uuid="14399970-e399-41e0-b6f9-1218079fd56c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="194" y="24" width="81" height="24" forecolor="#003333" uuid="b5b0fe03-9b8f-48c6-ba51-c218427028f6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="447" y="24" width="108" height="24" forecolor="#003333" uuid="c3094477-bb5e-4d5c-a440-8d7c7f2a1d3e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_4}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="77" width="555" height="1" forecolor="#000000" uuid="87a16c88-afd0-4f53-80f7-a0db7da28e89"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="78" forecolor="#000000" uuid="8b488d96-d1ff-4b71-a13d-10dec0694dbf"/>
+			</line>
+			<line>
+				<reportElement x="555" y="0" width="1" height="78" forecolor="#000000" uuid="7cfcc318-3d16-496a-9f9d-fec7534f6d85"/>
+			</line>
+			<textField>
+				<reportElement x="326" y="24" width="108" height="24" forecolor="#003333" uuid="4ce9ed43-80d5-4de4-b074-75ede6cd39e8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50"/>
+	</pageFooter>
+</jasperReport>

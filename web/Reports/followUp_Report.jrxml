@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AircraftReportColumnIndex" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30" uuid="6e843fe2-ce72-4257-a4c3-1df03728dc95">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="228"/>
+	<field name="COLUMN_0" class="java.lang.String"/>
+	<field name="COLUMN_1" class="java.lang.String"/>
+	<field name="COLUMN_2" class="java.lang.String"/>
+	<field name="COLUMN_3" class="java.lang.String"/>
+	<field name="COLUMN_4" class="java.lang.String"/>
+	<field name="COLUMN_5" class="java.lang.String"/>
+	<field name="COLUMN_6" class="java.lang.String"/>
+	<field name="COLUMN_7" class="java.lang.String"/>
+	<title>
+		<band height="145">
+			<staticText>
+				<reportElement x="265" y="65" width="182" height="20" forecolor="#0033FF" uuid="27475233-c728-4beb-a753-f8ece8a71a5c"/>
+				<text><![CDATA[Website:  www.heerinternational.com ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="95" y="0" width="365" height="34" forecolor="#0033FF" uuid="62005827-2a44-40bb-b1cc-27dc6d049f98"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Heer International]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="65" width="108" height="20" forecolor="#0033FF" uuid="8439fa1c-fcaa-4670-8a59-ea154fea073a"/>
+				<text><![CDATA[Mo: +91 9558731489]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="34" width="365" height="31" forecolor="#0033FF" uuid="e4d45f5f-9c65-474b-9daf-3d3a84740cb1"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[224, Paradise Complex, Sayaji Ganj, Vadodara - 390020, Near Kala Ghoda, Opposite M S University ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="101" width="555" height="3" forecolor="#000000" uuid="0c06507a-21cd-4291-8c3f-c41bd88d2b62"/>
+			</line>
+			<line>
+				<reportElement x="0" y="144" width="555" height="1" forecolor="#000000" uuid="78db59ca-63f4-4f22-8355-386fb9b122b8"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="95" y="110" width="365" height="34" forecolor="#0033FF" uuid="1c518c47-ddea-414d-a737-413a7fe13c49"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inquiry Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="419" splitType="Stretch">
+			<textField>
+				<reportElement x="298" y="51" width="228" height="24" forecolor="#003333" uuid="d844cada-1aa4-4208-9fc1-dcdf62a72235"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_0}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="298" y="99" width="228" height="24" forecolor="#003333" uuid="14399970-e399-41e0-b6f9-1218079fd56c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="298" y="153" width="228" height="24" forecolor="#003333" uuid="b5b0fe03-9b8f-48c6-ba51-c218427028f6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="298" y="242" width="228" height="54" forecolor="#003333" uuid="c3094477-bb5e-4d5c-a440-8d7c7f2a1d3e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_4}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="320" width="555" height="1" forecolor="#000000" uuid="87a16c88-afd0-4f53-80f7-a0db7da28e89"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="80" y="260" width="136" height="24" forecolor="#0033FF" uuid="59e83213-26f7-45c4-92b5-9057dde4c943"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Last FollowUp Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="80" y="51" width="79" height="24" forecolor="#0033FF" uuid="d91d7ea5-82a6-4cff-b260-9b98dd2d2141"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="80" y="99" width="94" height="24" forecolor="#0033FF" uuid="95e890cc-ecb3-450a-a6da-c0992962dca0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="80" y="153" width="69" height="24" forecolor="#0033FF" uuid="a5f9b4ae-dc74-41ec-b28d-582b64d17a9e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Moblie No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="80" y="203" width="106" height="24" forecolor="#0033FF" uuid="40ecb23a-2d3f-49da-a137-46efb0263e37"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Last Followup Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="298" y="203" width="228" height="24" forecolor="#003333" uuid="e2de1b88-16b6-42a0-89dd-194af10e1324"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50"/>
+	</pageFooter>
+</jasperReport>

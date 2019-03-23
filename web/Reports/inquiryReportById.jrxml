@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="inquiryReportById" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b28d4ac0-e2f7-4235-9a74-baebb0f3a835">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="COLUMN_0" class="java.lang.String"/>
+	<field name="COLUMN_1" class="java.lang.String"/>
+	<field name="COLUMN_2" class="java.lang.String"/>
+	<field name="COLUMN_3" class="java.lang.String"/>
+	<field name="COLUMN_4" class="java.lang.String"/>
+	<field name="COLUMN_5" class="java.lang.String"/>
+	<field name="COLUMN_6" class="java.lang.String"/>
+	<field name="COLUMN_7" class="java.lang.String"/>
+	<field name="COLUMN_8" class="java.lang.String"/>
+	<field name="COLUMN_9" class="java.lang.String"/>
+	<field name="COLUMN_10" class="java.lang.String"/>
+	<field name="COLUMN_11" class="java.lang.String"/>
+	<field name="COLUMN_12" class="java.lang.String"/>
+	<field name="COLUMN_13" class="java.lang.String"/>
+	<field name="COLUMN_14" class="java.lang.String"/>
+	<field name="COLUMN_15" class="java.lang.String"/>
+	<field name="COLUMN_16" class="java.lang.String"/>
+	<field name="COLUMN_17" class="java.lang.String"/>
+	<field name="DATA1" class="java.lang.String"/>
+	<field name="DATA2" class="java.lang.String"/>
+	<field name="DATA3" class="java.lang.String"/>
+	<field name="DATA4" class="java.lang.String"/>
+	<field name="DATA5" class="java.lang.String"/>
+	<field name="DATA6" class="java.lang.String"/>
+	<field name="DATA7" class="java.lang.String"/>
+	<field name="DATA8" class="java.lang.String"/>
+	<field name="DATA9" class="java.lang.String"/>
+	<field name="DATA10" class="java.lang.String"/>
+	<field name="DATA11" class="java.lang.String"/>
+	<field name="DATA12" class="java.lang.String"/>
+	<field name="DATA13" class="java.lang.String"/>
+	<field name="DATA14" class="java.lang.String"/>
+	<field name="DATA15" class="java.lang.String"/>
+	<field name="DATA16" class="java.lang.String"/>
+	<field name="DATA17" class="java.lang.String"/>
+	<field name="DATA18" class="java.lang.String"/>
+	<field name="DATA19" class="java.lang.String"/>
+	<field name="DATA20" class="java.lang.String"/>
+	<field name="DATA21" class="java.lang.String"/>
+	<field name="DATA22" class="java.lang.String"/>
+	<field name="DATA23" class="java.lang.String"/>
+	<field name="DATA24" class="java.lang.String"/>
+	<field name="DATA25" class="java.lang.String"/>
+	<field name="DATA26" class="java.lang.String"/>
+	<field name="DATA27" class="java.lang.String"/>
+	<field name="INFO1" class="java.lang.String"/>
+	<field name="INFO2" class="java.lang.String"/>
+	<field name="INFO3" class="java.lang.String"/>
+	<field name="INFO4" class="java.lang.String"/>
+	<field name="INFO5" class="java.lang.String"/>
+	<field name="INFO6" class="java.lang.String"/>
+	<field name="INFO7" class="java.lang.String"/>
+	<field name="INFO8" class="java.lang.String"/>
+	<field name="INFO9" class="java.lang.String"/>
+	<field name="INFO10" class="java.lang.String"/>
+	<field name="INFO12" class="java.lang.String"/>
+	<field name="INFO11" class="java.lang.String"/>
+	<field name="INFO13" class="java.lang.String"/>
+	<field name="INFO14" class="java.lang.String"/>
+	<field name="INFO15" class="java.lang.String"/>
+	<field name="INFO16" class="java.lang.String"/>
+	<title>
+		<band height="155" splitType="Stretch">
+			<staticText>
+				<reportElement x="95" y="44" width="365" height="31" forecolor="#0033FF" uuid="081540dc-74e0-4662-a1ca-7d7c6eff53cb"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[224, Paradise Complex, Sayaji Ganj, Vadodara - 390020, Near Kala Ghoda, Opposite M S University ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="154" width="555" height="1" forecolor="#000000" uuid="c5ba9d35-4192-418f-b0cc-0f75e4b5412b"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="95" y="10" width="365" height="34" forecolor="#0033FF" uuid="d33e9ee9-9a3a-4a8e-bb79-432647b59499"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Heer International]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="75" width="108" height="20" forecolor="#0033FF" uuid="d575786c-b7ea-4fd6-942b-2923c0e7b5e7"/>
+				<text><![CDATA[Mo: +91 9558731489]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="95" y="120" width="365" height="34" forecolor="#0033FF" uuid="58a1c653-b2c5-40ad-8611-3c4301b031ac"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inquiry Report]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="111" width="555" height="3" forecolor="#000000" uuid="fb481874-750d-493c-b006-ab34312b62e5"/>
+			</line>
+			<staticText>
+				<reportElement x="265" y="75" width="182" height="20" forecolor="#0033FF" uuid="aaa88716-2926-47ec-905a-b8ea800f8bb3"/>
+				<text><![CDATA[Website:  www.heerinternational.com ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="748">
+			<textField>
+				<reportElement x="265" y="296" width="108" height="24" forecolor="#003333" uuid="02d3b153-8328-4b81-affa-bef11f05833f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="249" width="108" height="24" forecolor="#003333" uuid="6cbccdce-e6ec-41d1-865c-8b2a4654181d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="496" width="108" height="24" forecolor="#003333" uuid="c639d01d-01e2-4325-9090-2c1f0a8b9bf6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_9}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="446" width="108" height="24" forecolor="#003333" uuid="fb4db935-9d11-4ab1-be2c-e481859eec9f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="59" width="108" height="24" forecolor="#003333" uuid="0d1c4f6c-5bbd-4c42-a370-5a534dd94a04"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_0}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="396" width="108" height="24" forecolor="#0033FF" uuid="e30aeef4-4c1b-4b4a-9e6f-3e8e5cf61d03"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Date created]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="546" width="108" height="24" forecolor="#0033FF" uuid="2a72fa94-dcce-4e46-892d-8fb0a94aefb4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Assigned To]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="265" y="546" width="108" height="24" forecolor="#003333" uuid="83709d5f-196d-47ec-8096-f6069762569f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="155" width="108" height="24" forecolor="#003333" uuid="3de8f74a-3ad5-4eb1-915f-1229b8575267"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="446" width="108" height="24" forecolor="#0033FF" uuid="bce1beb6-9dc3-4856-a3f4-f9a2a24f6fc5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Form Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="107" width="94" height="24" forecolor="#0033FF" uuid="2ed59d7a-9fcf-4e3e-8316-8b7bec46d497"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="201" width="108" height="24" forecolor="#0033FF" uuid="de29ba7f-fdd9-4a72-a418-98c04d59817c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Email Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="10" width="121" height="29" forecolor="#0033FF" uuid="2470ae53-5e1a-463a-9d80-77eb1c12ae3f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lead Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="249" width="108" height="24" forecolor="#0033FF" uuid="76343613-b701-4ecc-83f3-d09cfce5c90b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Country Preferences]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="346" width="108" height="24" forecolor="#0033FF" uuid="72106a60-8458-4a98-bff5-e95243803d4c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Gender]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="265" y="396" width="108" height="24" forecolor="#003333" uuid="e46a8272-76c2-437a-a133-422d637abb43"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="346" width="108" height="24" forecolor="#003333" uuid="ab0e81f5-6757-4f4e-9c5f-fcbe508b35f2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_6}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="496" width="108" height="24" forecolor="#0033FF" uuid="cdf16bf3-71f5-4df6-a242-e9d4f255cf89"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Assigned]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="155" width="69" height="24" forecolor="#0033FF" uuid="80c6cce7-e329-47c1-95bd-07a8ab1e82a5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Moblie No]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="265" y="201" width="108" height="24" forecolor="#003333" uuid="e4b4bebc-7359-4e62-b695-8de454476d6a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="107" width="108" height="24" forecolor="#003333" uuid="3b9f09f6-31d7-4aa9-9111-f16d4871277d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="296" width="108" height="24" forecolor="#0033FF" uuid="36f40ac3-d50d-4d6c-9e7f-d545830217ff"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Inquiry Source]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="59" width="79" height="24" forecolor="#0033FF" uuid="4455cdab-3a82-43d9-bf49-88bd7f0003ea"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+		</band>
+		<band height="748">
+			<textField>
+				<reportElement x="265" y="257" width="108" height="24" forecolor="#003333" uuid="97d73a7b-881f-435b-a5f7-0139434a395b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_15}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="115" width="94" height="24" forecolor="#0033FF" uuid="6a624020-45af-494d-b953-d763d51ffe9f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[City/Town]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="209" width="108" height="24" forecolor="#0033FF" uuid="ef8d4d26-a208-4bd9-a174-f6dc3747697a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[State]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="354" width="108" height="24" forecolor="#0033FF" uuid="e6cb4c18-915b-4bd1-86c9-c8fcd9513644"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Additional Passport #2]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="265" y="304" width="108" height="24" forecolor="#003333" uuid="41c3b0fa-3aca-4865-9e3c-9e60e50c1ee8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_16}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="67" width="108" height="24" forecolor="#003333" uuid="ddc34e36-bf34-4ff6-9ad1-beef61df6bed"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_11}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="304" width="108" height="24" forecolor="#0033FF" uuid="5a19485e-d44d-4265-a77f-b1002803dcc3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Additional Passport #1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="163" width="69" height="24" forecolor="#0033FF" uuid="9825cd7a-0d75-4af1-8d8c-401f888ae40d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Pincode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="10" width="145" height="29" forecolor="#0033FF" uuid="81f09866-d82e-4be6-a960-2409ebead927"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[General Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="257" width="108" height="24" forecolor="#0033FF" uuid="01c8c894-af5e-482e-b2bf-cfb70c35f81f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Passport No]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="265" y="115" width="108" height="24" forecolor="#003333" uuid="2d8e3627-6ab2-4298-9762-aacd0599c9e0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="354" width="108" height="24" forecolor="#003333" uuid="e9d3ab98-4860-4204-9c13-01fb901445c6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_17}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="163" width="108" height="24" forecolor="#003333" uuid="8da274ab-fc43-48f4-91df-a42687ea3da6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_13}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="209" width="108" height="24" forecolor="#003333" uuid="f2257a00-0540-4d9b-96aa-b56becc35467"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_14}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="95" y="67" width="79" height="24" forecolor="#0033FF" uuid="16ec5cdd-8eea-4adb-8d11-18479a78b5d1"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+		</band>
+		<band height="748">
+			<textField>
+				<reportElement x="323" y="288" width="89" height="42" forecolor="#003333" uuid="cb1129a5-787e-4717-af24-0071f7a180b9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA13}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="425" width="59" height="42" forecolor="#003333" uuid="685018e3-a0f6-4e59-a8bc-341a4513935e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA21}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="92" width="59" height="42" forecolor="#003333" uuid="fdf7c349-eca0-4fb4-b21c-af9f9ecd39e8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="486" width="56" height="42" forecolor="#003333" uuid="dda25cf9-65b6-4dd2-aad7-4e7453c9ce51"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA26}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="425" width="61" height="42" forecolor="#003333" uuid="e0b5f767-a7db-4ed2-859c-83be12146b86"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA24}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="92" width="70" height="42" forecolor="#003333" uuid="f26974c2-26d3-4eb3-9d11-1c5c1adcfde4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="288" width="61" height="42" forecolor="#003333" uuid="b82d54dd-0baf-411b-89a7-3bfb11babb58"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA14}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="355" width="59" height="42" forecolor="#003333" uuid="560ebdfe-4e12-458f-a027-d4f656521c30"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA16}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="493" y="223" width="56" height="42" forecolor="#003333" uuid="9b3ed3e6-f13e-4b7a-ac22-63bd068c7740"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="157" width="70" height="42" forecolor="#003333" uuid="3054a9eb-afa4-400c-a2f8-1923b21d8277"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="288" width="70" height="42" forecolor="#003333" uuid="490fcdb0-8a1e-416f-aa28-975c3dcaf1c7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="425" width="89" height="42" forecolor="#003333" uuid="4fa516ba-f386-4cdc-b015-f4f3ec77b78d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA23}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="177" y="39" width="59" height="41" forecolor="#0033FF" uuid="672ae226-b352-4a99-b938-41b6341d42e4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Grade / %]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="177" y="223" width="59" height="42" forecolor="#003333" uuid="3dd20dbc-5517-4046-a5f7-365f3e9c9fa5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA6}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="545" width="155" height="29" forecolor="#0033FF" uuid="c06f04d0-7223-49bc-a8ea-39f31fb53995"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Masters Backlogs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="92" width="155" height="29" forecolor="#0033FF" uuid="18c0aee2-127d-438b-848c-7bd1b68febdc"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[10th Grade / O Levels]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="355" width="155" height="29" forecolor="#0033FF" uuid="6e75a82a-a7de-48c7-8a7a-c1c2fe8ba66c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PG Diploma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="13" y="10" width="164" height="29" forecolor="#0033FF" uuid="e9bfc7c6-15f2-4210-a94b-a4c16f6b3200"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Academic Details]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="244" y="223" width="70" height="42" forecolor="#003333" uuid="c12b7f76-a75d-4dee-9c3e-caec31688be9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="494" y="425" width="56" height="42" forecolor="#003333" uuid="fa1147c5-c60f-4b19-8965-cb55eb595069"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA25}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="244" y="39" width="70" height="41" forecolor="#0033FF" uuid="ad3ab5cd-63df-45d9-91c2-6ee3a301ef8e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Passing Year]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="177" y="157" width="59" height="42" forecolor="#003333" uuid="f7a9a62b-d122-493a-ab2c-48cb78ebb73f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="418" y="39" width="74" height="41" forecolor="#0033FF" uuid="19108df3-281b-4e4c-8242-01c53f507cdf"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Awarding Body/
+College & University]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="177" y="288" width="59" height="42" forecolor="#003333" uuid="c2decbbe-052f-4182-b521-a884736024be"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA11}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="486" width="155" height="29" forecolor="#0033FF" uuid="069ecaf4-3c9e-4659-9cd6-8dd9423d7bd8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bachelors Backlogs]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="494" y="355" width="56" height="42" forecolor="#003333" uuid="c8f25370-8e78-485d-946b-7d57d7a041ea"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA20}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="545" width="56" height="42" forecolor="#003333" uuid="5036f86b-7dc6-495e-a03b-7ea3d4231001"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA27}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="425" width="70" height="42" forecolor="#003333" uuid="59c34f3a-472a-4d12-b11f-9fc1cad316ee"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA22}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="157" width="155" height="29" forecolor="#0033FF" uuid="607460d0-866e-48dd-803d-1da20e5c78d0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[12th Grade / A Levels]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="494" y="288" width="56" height="42" forecolor="#003333" uuid="e3c23e65-b047-4091-b696-48bf2ddd44ad"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA15}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="288" width="155" height="29" forecolor="#0033FF" uuid="5b56ec79-5543-4799-a7ba-679a0200e185"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bachelors Degree]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="419" y="223" width="61" height="42" forecolor="#003333" uuid="6a4f8dc0-85c0-464d-ab35-88d1fbd1b267"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA9}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="355" width="61" height="42" forecolor="#003333" uuid="a752455a-1c0e-4a23-827d-2ad1b300a56a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA19}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="157" width="89" height="42" forecolor="#003333" uuid="bdbb9b4b-3653-4e6f-86ad-96dcdbeb563b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="355" width="89" height="42" forecolor="#003333" uuid="e79d5081-f2b3-4961-8909-af3a9b1aa0eb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA18}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="223" width="155" height="29" forecolor="#0033FF" uuid="2d79930b-2480-4c70-a14b-0b3fcbcc150a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Diploma]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="244" y="355" width="70" height="42" forecolor="#003333" uuid="80321cc6-d65a-47a2-a830-f22a248b7620"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA17}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="425" width="155" height="29" forecolor="#0033FF" uuid="a5b1cd84-f750-4ef2-b221-dad8ba870477"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Masters Degree]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="498" y="39" width="56" height="41" forecolor="#0033FF" uuid="1c586170-b485-4892-aa5e-784ba86365eb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Duration in Years]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="323" y="223" width="89" height="42" forecolor="#003333" uuid="e1140ca8-cea2-4b02-8611-1ced885da2b8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA8}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="322" y="24" width="90" height="56" forecolor="#0033FF" uuid="858f2ced-861a-480a-b2ef-1574a2637a25"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Stream/
+Diploma Name/
+Degree Name/
+PG Diploma Name]]></text>
+			</staticText>
+		</band>
+		<band height="748">
+			<textField>
+				<reportElement x="278" y="157" width="70" height="29" forecolor="#003333" uuid="d1508a26-9502-4221-9c9b-e2f7ad9bff85"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="223" width="70" height="29" forecolor="#003333" uuid="d32b712f-65a5-4fcd-a40a-ff9844579903"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO8}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="14" y="10" width="164" height="29" forecolor="#0033FF" uuid="b989c9e7-87ea-4f6a-8c08-4401386acec5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TEST Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="11" y="92" width="155" height="29" forecolor="#0033FF" uuid="7994e227-4601-49ab-9976-eb365a69dfd5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOEFL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="178" y="39" width="59" height="41" forecolor="#0033FF" uuid="e2d6e5c1-a2d1-4b80-b40f-dc0138bc0f9a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Test Score]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="399" y="39" width="111" height="41" forecolor="#0033FF" uuid="079174f2-1df8-4f66-b5e2-fa6a2e0a2ffa"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Test Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="278" y="95" width="70" height="26" forecolor="#003333" uuid="27325027-1fac-47f0-a01b-bc39e83f5e6a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="11" y="288" width="155" height="29" forecolor="#0033FF" uuid="6b442e10-fe35-424f-9276-ea8df5d93b1a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GMAT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="278" y="288" width="70" height="29" forecolor="#003333" uuid="fcf65efe-8af3-4208-9fae-e10b1aaddd2d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="288" width="59" height="29" forecolor="#003333" uuid="e2901b45-8330-4ac2-8017-daa1686ee64f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="95" width="59" height="26" forecolor="#003333" uuid="82b78bfd-d2f8-4feb-b26e-a81f18262852"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="278" y="39" width="70" height="41" forecolor="#0033FF" uuid="8aad471c-4a61-4eb7-a1fc-a6d97c6a9fc3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Mock Score]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="176" y="223" width="59" height="29" forecolor="#003333" uuid="7771fa3e-104e-4984-8830-83b09fd36c6b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="288" width="110" height="29" forecolor="#003333" uuid="26f04860-0c1e-4f0a-b9f1-f4dc71f7a059"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="95" width="110" height="26" forecolor="#003333" uuid="992a8353-d198-4391-951e-0fb434eafc81"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="355" width="59" height="24" forecolor="#003333" uuid="6b197c7b-4572-4b91-82ec-5bcb2256c364"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO13}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="157" width="59" height="29" forecolor="#003333" uuid="dfac6be2-cf96-4810-b823-358c10a92d66"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO4}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="421" width="164" height="29" forecolor="#0033FF" uuid="4ab005e5-ee20-4548-9d65-be2773703b0a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Special Note]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="399" y="157" width="110" height="29" forecolor="#003333" uuid="3616e361-ed16-40f6-a1f8-6b0994a688d5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="223" width="110" height="29" forecolor="#003333" uuid="8bec7c57-ee2b-4ae1-8838-a3c311c2aa41"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO9}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="461" width="498" height="47" forecolor="#003333" uuid="6ebe8819-0157-42a6-a96c-8214832bb93c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO16}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="10" y="350" width="155" height="29" forecolor="#0033FF" uuid="370e433e-e6f6-491a-8b97-e70b85868a9b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SAT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="278" y="355" width="70" height="24" forecolor="#003333" uuid="9ab58d92-84d7-488d-9e71-861462bb2787"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO14}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="11" y="223" width="155" height="29" forecolor="#0033FF" uuid="49468c5f-6028-4de0-b5ee-0e9987cb3408"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="11" y="157" width="155" height="29" forecolor="#0033FF" uuid="d8fce751-a09a-4f22-873f-a78f5342b766"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IELTS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="399" y="355" width="110" height="24" forecolor="#003333" uuid="2fc04820-12d8-46aa-a873-742bfc9938c5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{INFO15}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

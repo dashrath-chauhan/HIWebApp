@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="heer" type="javax.sql.DataSource">
+jdbcDriver=com.mysql.jdbc.Driver
+password=coolsummer
+userName=root
+jdbcUrl=jdbc:mysql://127.0.0.1:3306/heer?zeroDateTimeBehavior=convertToNull
+</Resource>
+</resources>

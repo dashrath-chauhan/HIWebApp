@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b10ee9c7-4df6-40b0-b088-af505c891308">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="168"/>
+	<parameter name="applicationCharges" class="java.lang.String"/>
+	<parameter name="processCharges" class="java.lang.String"/>
+	<parameter name="totalAmount" class="java.lang.String"/>
+	<parameter name="id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="name" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from inquiry where id = $P{id};]]>
+	</queryString>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="first_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="last_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="middle_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mobile" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="emailId" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="inquiry_source" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="country" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dateTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="is_inquiry" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="129" splitType="Stretch">
+			<staticText>
+				<reportElement x="116" y="65" width="108" height="20" forecolor="#0066FF" uuid="5c84a72e-39c8-4294-a60b-11b2c88a0b18"/>
+				<text><![CDATA[Mo: +91 9558731489]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="65" width="182" height="20" forecolor="#0066FF" uuid="eb8ed0b4-df1e-4f99-810f-e98cf1dc4e12"/>
+				<text><![CDATA[Website:  www.heerinternational.com ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="103" y="34" width="365" height="31" forecolor="#0066FF" uuid="b014f7f9-bc7e-4213-b0cf-3eac94fee849"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[224, Paradise Complex, Sayaji Ganj, Vadodara - 390020, Near Kala Ghoda, Opposite M S University ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="103" y="0" width="365" height="34" forecolor="#0066FF" uuid="59be81ff-6fd3-403d-8478-9a29e2683243"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Heer International]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="32" y="13" width="100" height="20" forecolor="#0066FF" uuid="f73cfd5a-8614-4e47-97af-b1d3f9982e54"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Application Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="44" width="100" height="20" forecolor="#0066FF" uuid="5aad5403-37c5-4afd-9df8-dcb3691ab476"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="81" width="555" height="1" uuid="2f804244-d727-4905-9434-78c771ffaac3"/>
+			</line>
+			<line>
+				<reportElement x="-1" y="0" width="555" height="1" uuid="3575b9fb-7130-4f86-b7de-6dde59d54b58"/>
+			</line>
+			<textField>
+				<reportElement x="156" y="13" width="100" height="20" uuid="873fd8d6-d09a-43ad-8d08-5a3c3f7152a4"/>
+				<textFieldExpression><![CDATA[$P{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="156" y="44" width="100" height="20" uuid="a23a9e5d-6392-46e5-b6d3-203378d9aa9f"/>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="448" y="24" width="100" height="20" forecolor="#0066FF" uuid="c66417d3-0212-4ebe-b558-456a998daca5"/>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="24" width="100" height="20" forecolor="#0066FF" uuid="322603b9-f2cc-4268-9ed6-19719aba39bf"/>
+				<text><![CDATA[Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="24" width="100" height="20" forecolor="#0066FF" uuid="007ef718-9ecf-48d0-8d97-07227287d6b8"/>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="60" width="555" height="1" uuid="ae2f7a73-34b2-4775-bd75-5e8e9c93c086"/>
+			</line>
+			<line>
+				<reportElement x="177" y="0" width="1" height="61" uuid="e18fcb22-19cf-45e2-a19b-eac470da1c54"/>
+			</line>
+			<line>
+				<reportElement x="393" y="0" width="1" height="61" uuid="0018e1e7-8979-41fb-b036-5ddca1385f63"/>
+			</line>
+			<line>
+				<reportElement x="555" y="0" width="1" height="61" uuid="b51a5500-624a-4cc7-ad33-e04915e5655d"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="201" splitType="Stretch">
+			<line>
+				<reportElement x="177" y="0" width="1" height="201" uuid="5de5da4a-6a1f-4873-8a04-a57a7ad3ac6b"/>
+			</line>
+			<line>
+				<reportElement x="393" y="0" width="1" height="61" uuid="ba903198-fdb1-48f3-bbcf-fcc89b2255fa"/>
+			</line>
+			<line>
+				<reportElement x="393" y="0" width="1" height="201" uuid="9ef5b280-9bbe-4158-907d-864dc2eeffcd"/>
+			</line>
+			<line>
+				<reportElement x="-1" y="-61" width="1" height="61" uuid="670dbf92-ed8a-498d-84d2-06ab7e83657e"/>
+			</line>
+			<line>
+				<reportElement x="-1" y="0" width="1" height="201" uuid="5386147b-b3c2-4e62-81fe-ce815d1bce21"/>
+			</line>
+			<line>
+				<reportElement x="554" y="0" width="1" height="201" uuid="58165408-7c6d-4b58-b7fe-c98b2f898517"/>
+			</line>
+			<line>
+				<reportElement x="178" y="166" width="375" height="1" uuid="1a5e6f2e-c1b7-4b92-be52-01a98b434b00"/>
+			</line>
+			<line>
+				<reportElement x="0" y="200" width="553" height="1" uuid="8b20301d-7541-4dee-bef1-297a1d1fb829"/>
+			</line>
+			<staticText>
+				<reportElement x="224" y="177" width="100" height="20" forecolor="#0066FF" uuid="ab834660-5e2d-44cf-84f8-652d252721cb"/>
+				<text><![CDATA[Total Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="17" width="100" height="20" forecolor="#0066FF" uuid="0d04ee3a-db04-4642-afce-cdf550884f31"/>
+				<text><![CDATA[Application Fee]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="61" width="100" height="20" forecolor="#0066FF" uuid="3cf25183-8615-4dcb-887f-35ab92b47d8e"/>
+				<text><![CDATA[Process Charges]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="224" y="17" width="129" height="20" uuid="9860748b-8a85-4d35-8564-fa78d217bf29"/>
+				<textFieldExpression><![CDATA[$P{applicationCharges}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="224" y="61" width="100" height="20" uuid="49e8059a-4fb0-47ab-991c-cd7b7bcb3374"/>
+				<textFieldExpression><![CDATA[$P{processCharges}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="416" y="17" width="122" height="20" uuid="a0371ce3-6315-4ca1-9f75-8d58ae30f622"/>
+				<textFieldExpression><![CDATA[$P{applicationCharges}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="416" y="61" width="110" height="20" uuid="fe02add6-7a69-4537-9847-6e0660aea6bd"/>
+				<textFieldExpression><![CDATA[$P{processCharges}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="416" y="177" width="100" height="20" uuid="1ffaa518-8235-4260-8272-15fbb62e56d6"/>
+				<textFieldExpression><![CDATA[$P{totalAmount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="426" y="16" width="122" height="20" forecolor="#0066FF" uuid="1d5b2dcf-ee5b-48c9-9f75-24205c848b47"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Mr Jayesh Patel]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
