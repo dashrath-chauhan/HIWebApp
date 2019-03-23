@@ -409,15 +409,52 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         return output;
     }
     
-    //followup report
+    //Inquiry followup report
     @PUT
-    @Path("folowUpReport")
+    @Path("AfolowUpReport")
     @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
     @Produces({"text/plain"})
-    public String folowUpReport(@FormParam("date") String date) {
+    public String AfolowUpReport(@FormParam("date") String date) {
         String output = "";
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         List<FollowUp> inquries = inquiryFacadeREST.todaysApplicationsFollowUps(date);
+        System.out.println(inquries.get(0).getInquiryId());
+        System.out.println(inquries.get(1).getInquiryId());
+        List<Map<String,?>> dataSource = new ArrayList<Map<String,?>>();
+        try {
+            JasperPrint jasperPrint = null;
+            
+            for(int i=0; i<inquries.size(); i++){
+                Map<String,Object> m = new HashMap<String,Object>();
+                m.put("COLUMN_0", inquries.get(i).getInquiryId());
+                m.put("COLUMN_1", inquries.get(i).getFirstName()+" "+inquries.get(i).getLastName());
+                m.put("COLUMN_2", inquries.get(i).getMobile());
+                m.put("COLUMN_3", dateFormat.format(inquries.get(i).getLastFollowupDate()).toString());
+                m.put("COLUMN_4", inquries.get(i).getDescription());
+                dataSource.add(m);
+            }
+            
+            JRDataSource jrDataSource = new JRBeanCollectionDataSource(dataSource);
+            String home = System.getProperty("user.home");
+            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\followUp_Report.jrxml");
+            jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
+            JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/"+date+"_FollowUp_Report.pdf");
+            output += "Report generated.";
+            
+        } catch (JRException ex) {
+            Logger.getLogger(UsersFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return output;
+    }
+    //Inquiry followup report
+    @PUT
+    @Path("IfolowUpReport")
+    @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
+    @Produces({"text/plain"})
+    public String IfolowUpReport(@FormParam("date") String date) {
+        String output = "";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        List<FollowUp> inquries = inquiryFacadeREST.todaysInquriesFollowUps(date);
         System.out.println(inquries.get(0).getInquiryId());
         System.out.println(inquries.get(1).getInquiryId());
         List<Map<String,?>> dataSource = new ArrayList<Map<String,?>>();

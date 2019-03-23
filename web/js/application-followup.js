@@ -147,3 +147,27 @@ $(document).ready(function () {
     });
 });
 //*********************************************************************************************
+$(document).ready(function () {
+    $(document).on('click', '#followUpReport', function (e) {
+        var today = new Date();
+        var date = parseDate(today);
+
+        $.ajax({
+            data: { date  : date },
+            type: "put",
+            url: "http://localhost:46854/HIRestApp/webresources/usermodel.users/AfolowUpReport",
+            success: function (data) {
+                //alert("success");
+                document.getElementById('success-alert').textContent = data;
+                document.getElementById('success-alert').style.display = "block";
+                var frm = document.getElementsByName('inquiry-form')[0];
+                frm.reset();
+            },
+            error: function (err) {
+                //alert(err);
+                document.getElementById('success-alert').style.display = "none";
+            }
+        });
+    });
+});
+//*********************************************************************************************

@@ -148,7 +148,13 @@
                         </tbody>
                     </table>
                     <button class="btn btn-outline-success my-2 my-sm-0" id="followUpReport" type="button">Download Followup Report</button>
+                    <div class="form-group col-lg-12 mt-3">
+                        <div id="success-alert" class="alert alert-success" style="display:none;">
+                            <strong></strong>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="col-lg-7">
                     <div class="card alert alert-info" style="display:none;">
                         <div class="card-body" id="followups-details">
