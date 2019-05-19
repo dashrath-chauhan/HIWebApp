@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+//--------------------------------------------------------------------------------------
+
 $( document ).ready(function() {
-    var pathArray = window.location.pathname.split('/');
     $(document).on('click', '#lobtn', function (e) {
         document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;domain=localhost;";
         window.location.replace("/" + pathArray[1] + "/index.jsp");

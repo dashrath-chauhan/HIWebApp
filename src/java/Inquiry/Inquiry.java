@@ -40,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Inquiry.findByCountry", query = "SELECT i FROM Inquiry i WHERE i.country = :country")
     , @NamedQuery(name = "Inquiry.findByDateTime", query = "SELECT i FROM Inquiry i WHERE i.dateTime = :dateTime")
     , @NamedQuery(name = "Inquiry.findByDateBetween", query = "SELECT i FROM Inquiry i WHERE i.dateTime >= ?1 and i.dateTime <= ?2")
+    , @NamedQuery(name = "Inquiry.removeByInquiryId", query = "DELETE FROM Inquiry i WHERE i.id = :id")
     , @NamedQuery(name = "Inquiry.findByIsInquiry", query = "SELECT i FROM Inquiry i WHERE i.isInquiry = :isInquiry")})
 public class Inquiry implements Serializable {
 

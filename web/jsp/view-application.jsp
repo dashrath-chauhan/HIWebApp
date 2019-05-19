@@ -32,6 +32,8 @@
                             <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/view-inquiry.jsp">View Inquiry</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/inquiry-details.jsp">Inquiry Details</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/hold-inquiries.jsp">OnHold Inquiries</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown mr-4 ml-4">
@@ -83,7 +85,7 @@
         <div class="jumbotron vertical-center" id="jumbo-form">
             <h3 class="display-5">All Applications</h3>
             <hr class="my-5">
-            <div class="container">
+            <div class="container">  
                 <div class="row">
                     <hr class="my-5">
                     <table id="inquiries_table" class="table table-striped table-bordered" style="width:100%">
@@ -95,15 +97,17 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Mobile no</th>
+                                <th>Hold</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
-                        <tbody id="table-data">
-
-                        </tbody>
+                            <tbody id="table-data">
+                                
+                            </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        
                         
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>

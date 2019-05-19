@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "DocumentSet.findById", query = "SELECT d FROM DocumentSet d WHERE d.id = :id")
     , @NamedQuery(name = "DocumentSet.findByInquiryId", query = "SELECT d FROM DocumentSet d WHERE d.inquiryId = :inquiryId")
     , @NamedQuery(name = "DocumentSet.findByInquiryIdAndStatus", query = "SELECT d FROM DocumentSet d WHERE d.inquiryId = :inquiryId and d.status=0")
+    , @NamedQuery(name = "DocumentSet.findByInquiryIdAndStatusActive", query = "SELECT d FROM DocumentSet d WHERE d.inquiryId = :inquiryId and d.status=1")
     , @NamedQuery(name = "DocumentSet.findByDocumentName", query = "SELECT d FROM DocumentSet d WHERE d.documentName = :documentName")
     , @NamedQuery(name = "DocumentSet.findByInquiryIdAndDocumentName", query = "SELECT d FROM DocumentSet d WHERE d.inquiryId = ?1 and d.documentName = ?2")
     , @NamedQuery(name = "DocumentSet.findByStatus", query = "SELECT d FROM DocumentSet d WHERE d.status = :status")})

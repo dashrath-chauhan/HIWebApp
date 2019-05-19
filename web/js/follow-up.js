@@ -3,6 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+//--------------------------------------------------------------------------------------
 //*********************************************************************************************
 function parseDate(date) {
     var today = new Date(date);
@@ -52,7 +55,7 @@ $(document).ready(function () {
                 description: description, nextDate: nextDate
             },
             type: "post",
-            url: "http://localhost:46854/HIRestApp/webresources/followup.followup/createFollowUp",
+            url: base_url+"/webresources/followup.followup/createFollowUp",
             success: function (data) {
                 alert(data);
 //                document.getElementById('success-alert').textContent = data;

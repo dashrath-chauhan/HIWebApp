@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+//--------------------------------------------------------------------------------------
 //*********************************************************************************************
 $(document).ready(function () {
     $(document).on('click', '#generateReport', function (e) {
@@ -11,7 +13,7 @@ $(document).ready(function () {
         $.ajax({
             data: { inquiryId  : id },
             type: "put",
-            url: "http://localhost:46854/HIRestApp/webresources/usermodel.users/basicReport",
+            url: base_url+"/webresources/usermodel.users/basicReport",
             success: function (data) {
                 //alert("success");
                 document.getElementById('success-alert').textContent = data;
@@ -38,7 +40,7 @@ $(document).ready(function () {
             data: { dateFrom  : dateFrom, 
                     dateTo: dateTo },
             type: "put",
-            url: "http://localhost:46854/HIRestApp/webresources/usermodel.users/briefReport",
+            url: base_url+"/webresources/usermodel.users/briefReport",
             success: function (data) {
                 //alert("success");
                 document.getElementById('success-alert').textContent = data;

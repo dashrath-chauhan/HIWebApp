@@ -6,7 +6,9 @@
 package Followup.service;
 
 import Followup.FollowUp;
+import Inquiry.Inquiry;
 import Inquiry.service.InquiryDetailsFacadeREST;
+import Inquiry.service.InquiryFacadeREST;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,7 +19,6 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -29,6 +30,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import Followup.FollowupDetails;
+import Followup.FollowupDetailsPK;
+import Inquiry.InquiryDetails;
+import java.io.File;
 
 /**
  *
@@ -41,6 +46,15 @@ public class FollowUpFacadeREST extends AbstractFacade<FollowUp> {
     
     @EJB
     private FollowupDetailsFacadeREST followupDetailsFacadeREST;
+    
+    @EJB
+    private FollowUpFacadeREST followUpFacadeREST;
+    
+    @EJB
+    private InquiryFacadeREST inquiryFacadeREST;
+    
+    @EJB
+    private InquiryDetailsFacadeREST inquiryDetailsFacadeREST;
     
     @PersistenceContext(unitName = "HIRestAppPU")
     private EntityManager em;
@@ -198,4 +212,50 @@ public class FollowUpFacadeREST extends AbstractFacade<FollowUp> {
         System.out.println(inquries.get(0).getFirstName());
         return inquries;
     }
+    
+    @GET
+    @Path("getAllHoldInquries")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<FollowUp> getAllHoldInquries() {
+        List<FollowUp> inquries = findBy("findByLeadType", "H");
+        System.out.println(inquries.get(0).getFirstName());
+        return inquries;
+    }
+    
+    @PUT
+    @Path("deleteInquiry")
+    @Produces("text/plain")
+    @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
+    public String deleteInquiry(@FormParam("inquiryId") String inquiryId){
+        String output = "";
+        
+        Inquiry iq = inquiryFacadeREST.findBy("findById",inquiryId).get(0);
+        InquiryDetails iqD = inquiryDetailsFacadeREST.findBy("findByInquiryId", inquiryId).get(0);
+        FollowupDetails fpD = followupDetailsFacadeREST.findBy("findByInquiryId", inquiryId).get(0);
+        FollowUp fp = followUpFacadeREST.findBy("findByInquiryId", inquiryId).get(0);
+        
+        try {
+            if(iq!= null && iqD != null && fp != null && fpD != null){
+                inquiryFacadeREST.removeByInquiryId(iq.getId());
+                inquiryDetailsFacadeREST.removeByInquiryId(iqD.getInquiryId());
+                followUpFacadeREST.removeByInquiryId(fp.getInquiryId());
+                followupDetailsFacadeREST.removeByInquiryId(fpD.getFollowupDetailsPK().getInquiryId());
+                output += inquiryId+" deleted...";
+            } else {
+                output += inquiryId+" cannot delete...";
+            }
+            
+            
+        } catch (Exception e) {
+            output += "Something went wrong";
+        }
+        return output;
+    }
+    
+    public void removeByInquiryId(String inquiryId) {
+        List<Object> valueList = new ArrayList<>();
+        valueList.add(inquiryId);
+        super.removeBy("FollowUp.removeByInquiryId", inquiryId);
+    }
+            
 }

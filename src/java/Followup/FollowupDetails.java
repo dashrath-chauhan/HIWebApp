@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "FollowupDetails.findAll", query = "SELECT f FROM FollowupDetails f")
     , @NamedQuery(name = "FollowupDetails.findByInquiryId", query = "SELECT f FROM FollowupDetails f WHERE f.followupDetailsPK.inquiryId = :inquiryId")
+    , @NamedQuery(name = "FollowupDetails.removeByInquiryId", query = "DELETE FROM FollowupDetails f WHERE f.followupDetailsPK.inquiryId = :inquiryId")
     , @NamedQuery(name = "FollowupDetails.findByCounter", query = "SELECT f FROM FollowupDetails f WHERE f.followupDetailsPK.counter = :counter")
     , @NamedQuery(name = "FollowupDetails.findByEmail", query = "SELECT f FROM FollowupDetails f WHERE f.email = :email")
     , @NamedQuery(name = "FollowupDetails.findByLastFollowupDate", query = "SELECT f FROM FollowupDetails f WHERE f.lastFollowupDate = :lastFollowupDate")

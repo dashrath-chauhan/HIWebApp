@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+//--------------------------------------------------------------------------------------
 window.addEventListener("load", function () {
     loadXMLDoc();
 });
 function loadXMLDoc() {
         
-        var today = new Date();
-        var parsed = parseDate(today);
+        
         //alert("v" + parsed);
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -18,12 +20,15 @@ function loadXMLDoc() {
                 thisDoc(this);
             }
         };
-        xmlhttp.open("GET", "http://localhost:46854/HIRestApp/webresources/inquiry.inquiry/todaysInquriesFollowUps/" + parsed, true);
+        xmlhttp.open("GET", base_url+"/webresources/inquiry.inquiry/todaysInquriesFollowUps", true);
         xmlhttp.send();
 }
 //*********************************************************************************************
 function thisDoc(xml) {
     //alert("data1");
+    var today = new Date();
+    var parsed = parseDate(today);
+    console.log(parsed);
     var i;
     var xmlDoc = xml.responseXML;
     var table = '';
@@ -31,11 +36,15 @@ function thisDoc(xml) {
     var y = x[0].getElementsByTagName('followUp');
     var inquiry_table = '';
     for (i = 0; i < y.length; i++) {
-        inquiry_table += "<tr>";
+        if(parseDate(y[i].getElementsByTagName('nextFollowupDate')[0].textContent) == parsed){
+            inquiry_table += "<tr class='bg-success'>";
+        } else {
+            inquiry_table += "<tr>";
+        }
         inquiry_table += "<td>" + y[i].getElementsByTagName('inquiryId')[0].textContent + "</td>";
         inquiry_table += "<td>" + y[i].getElementsByTagName('firstName')[0].textContent + " " + y[i].getElementsByTagName('lastName')[0].textContent + "</td>";
         inquiry_table += "<td>" + y[i].getElementsByTagName('mobile')[0].textContent + "</td>";
-        inquiry_table += "</tr>";
+        inquiry_table += "</tr>"; 
     }
     document.getElementById("table-data").innerHTML = inquiry_table;
 }
@@ -103,7 +112,7 @@ function displayFollowUpDetails(id) {
                 document.getElementsByClassName('card alert alert-info')[0].style.display = "block";
             }
         };
-        xmlhttp.open("GET", "http://localhost:46854/HIRestApp/webresources/followup.followupdetails/getAllInquiriesById/" + id, true);
+        xmlhttp.open("GET", base_url+"/webresources/followup.followupdetails/getAllInquiriesById/" + id, true);
         xmlhttp.send();
 }
 //-------------------------------------------------------------------------------
@@ -131,7 +140,7 @@ $(document).ready(function () {
                 description: description, nextDate: nextDate
             },
             type: "post",
-            url: "http://localhost:46854/HIRestApp/webresources/followup.followup/createFollowUp",
+            url: base_url+"/webresources/followup.followup/createFollowUp",
             success: function (data) {
                 //alert(data);
                 document.getElementById('success-alert').textContent = "Inquiry Id: "+data;
@@ -148,18 +157,43 @@ $(document).ready(function () {
 //*********************************************************************************************
 //*********************************************************************************************
 $(document).ready(function () {
-    $(document).on('click', '#followUpReport', function (e) {
+    $(document).on('click', '#todayFollowUpReport', function (e) {
         var today = new Date();
         var date = parseDate(today);
 
         $.ajax({
             data: { date  : date },
             type: "put",
-            url: "http://localhost:46854/HIRestApp/webresources/usermodel.users/IfolowUpReport",
+            url: base_url+"/webresources/usermodel.users/IfolowUpReport",
             success: function (data) {
                 //alert("success");
                 document.getElementById('success-alert').textContent = data;
                 document.getElementById('success-alert').style.display = "block";
+                var frm = document.getElementsByName('inquiry-form')[0];
+                frm.reset();
+            },
+            error: function (err) {
+                //alert(err);
+                document.getElementById('success-alert').style.display = "none";
+            }
+        });
+    });
+});
+//*********************************************************************************************
+//*********************************************************************************************
+$(document).ready(function () {
+    $(document).on('click', '#completeFollowUpReport', function (e) {
+        var today = new Date();
+        var date = parseDate(today);
+
+        $.ajax({
+            data: { },
+            type: "put",
+            url: base_url+"/webresources/usermodel.users/completeIfolowUpReport",
+            success: function (data) {
+                //alert("success");
+                document.getElementById('success-report').textContent = data;
+                document.getElementById('success-report').style.display = "block";
                 var frm = document.getElementsByName('inquiry-form')[0];
                 frm.reset();
             },

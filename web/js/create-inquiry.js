@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+//--------------------------------------------------------------------------------------
 //*********************************************************************************************
 function getCookieValue(a) {
     var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
@@ -35,7 +37,7 @@ function fillForm(e) {
             
         }
     };
-    xmlhttp.open("GET", "http://localhost:46854/HIRestApp/webresources/inquiry.inquiry/getInquiryById/" + id, true);
+    xmlhttp.open("GET", base_url+"/webresources/inquiry.inquiry/getInquiryById/" + id, true);
     xmlhttp.send();
 }
 //*********************************************************************************************
@@ -59,7 +61,7 @@ $(document).ready(function () {
                 inquirySource: inquirySource, gender: gender,
                 countryPreference: countryPreference, createdBy: createdBy},
             type: "post",
-            url: "http://localhost:46854/HIRestApp/webresources/inquiry.inquiry/createInquiry",
+            url: base_url+"/webresources/inquiry.inquiry/createInquiry",
             success: function (data) {
                 document.getElementById('success-alert').textContent = data;
                 document.getElementById('success-alert').style = "block";
@@ -92,7 +94,7 @@ $(document).ready(function () {
                 inquirySource: inquirySource, gender: gender,
                 countryPreference: countryPreference, id: id},
             type: "put",
-            url: "http://localhost:46854/HIRestApp/webresources/inquiry.inquiry/updateInquiry",
+            url: base_url+"/webresources/inquiry.inquiry/updateInquiry",
             success: function (data) {
                 document.getElementById('success-alert').textContent = data;
                 document.getElementById('success-alert').style = "block";

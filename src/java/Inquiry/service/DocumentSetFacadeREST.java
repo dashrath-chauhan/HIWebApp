@@ -153,6 +153,14 @@ public class DocumentSetFacadeREST extends AbstractFacade<DocumentSet> {
     }
     
     @GET
+    @Path("findByInquiryIdAndStatusActive/{inquiryId}")
+    @Produces({"application/xml", "application/json"})
+    public List<DocumentSet> findByInquiryIdAndStatusActive(@PathParam("inquiryId") String inquiryId) {
+        List<DocumentSet> ds = findBy("findByInquiryIdAndStatusActive",inquiryId);
+        return ds;
+    }
+    
+    @GET
     @Path("by/{namedQuery}/{attrValue}")
     @Produces({"application/xml", "application/json"})
     public List<DocumentSet> findBy(@PathParam("namedQuery") String query, @PathParam("attrValue") String values) {
@@ -163,6 +171,10 @@ public class DocumentSetFacadeREST extends AbstractFacade<DocumentSet> {
                 valueList.add(valueString[0]);
                 break;
             case "findByInquiryIdAndStatus":
+                valueList.add(valueString[0]);
+                break;
+                
+            case "findByInquiryIdAndStatusActive":
                 valueList.add(valueString[0]);
                 break;
                 

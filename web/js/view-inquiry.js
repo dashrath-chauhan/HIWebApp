@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+//------------------------------------------------------------------------------------
 window.addEventListener("load", function () {
     loadXMLDoc();
 });
@@ -15,7 +17,7 @@ function loadXMLDoc() {
             myFunction(this);
         }
     };
-    xmlhttp.open("GET", "http://localhost:46854/HIRestApp/webresources/inquiry.inquiry/getAllInquiries", true);
+    xmlhttp.open("GET", base_url+"/webresources/inquiry.inquiry/getAllInquiries", true);
     xmlhttp.send();
 }
 function myFunction(xml) {

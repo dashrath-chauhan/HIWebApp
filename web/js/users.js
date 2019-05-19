@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
 //*********************************************************************************************
 $(document).ready(function () {
     $(document).on('click', '#isubmit', function (e) {
@@ -15,7 +16,7 @@ $(document).ready(function () {
         $.ajax({
             data: {email: email, userName: name, password: password, admin: admin},
             type: "post",
-            url: "http://localhost:46854/HIRestApp/webresources/usermodel.users/createNewUser",
+            url: base_url+"/webresources/usermodel.users/createNewUser",
             success: function (data) {
                 alert("User Created:" + name);
                 loadXMLDoc();
@@ -33,12 +34,12 @@ $(document).ready(function () {
     $(document).on('click', '#login-button', function (e) {
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
+        
         $.ajax({
             data: {email: email, password: password},
             type: "post",
-            url: "http://localhost:46854/HIRestApp/webresources/usermodel.users/login",
+            url: base_url+"/webresources/usermodel.users/login",
             success: function (data) {
-                var pathArray = window.location.pathname.split('/');
                 var data = data.split(',');
                 document.cookie = "email=" + data[0] + "; path=/;domain=localhost;";
                 document.cookie = "password=" + data[1] + ";";
@@ -46,6 +47,7 @@ $(document).ready(function () {
                 window.location.replace("/" + pathArray[1] + "/jsp/view-application.jsp");
             },
             error: function (data) {
+                console.log(base_url);
                 alert("error");
             }
         });
@@ -65,7 +67,7 @@ function loadXMLDoc() {
             myFunction(this);
         }
     };
-    xmlhttp.open("GET", "http://localhost:46854/HIRestApp/webresources/usermodel.users/getAllUsers", true);
+    xmlhttp.open("GET", base_url+"/webresources/usermodel.users/getAllUsers", true);
     xmlhttp.send();
 }
 
@@ -139,7 +141,7 @@ $(document).ready(function () {
                 thisDoc(this);
             }
         };
-        xmlhttp.open("GET", "http://localhost:46854/HIRestApp/webresources/inquiry.inquiry/todaysFollowUps/" + parsed, true);
+        xmlhttp.open("GET", base_url+"/webresources/inquiry.inquiry/todaysFollowUps/" + parsed, true);
         xmlhttp.send();
     });
 });

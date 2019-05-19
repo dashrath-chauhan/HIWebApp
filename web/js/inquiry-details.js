@@ -4,16 +4,23 @@
  * and open the template in the editor.
  */
 
+var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+var id;
 
+//--------------------------------------------------------------------------------------
 //*********************************************************************************************
 $(document).ready(function () {
+    if (document.getElementById('filter').value.length == 0 || document.getElementById('filter').value.toString().length == 0) {
+        id = sessionStorage.getItem("inquiryId");
+        document.getElementById('filter').value = id;
+        //setTimeout(sessionStorage.setItem("inquiryId",""),"10000")
+    } else {
+        id = document.getElementById('filter').value;
+    }
     $(document).on('click', '#send', function (e) {
-     
-    //alert('Thank you');
     e.preventDefault();
     
-    //get input value
-    var id = document.getElementById('filter').value;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -21,6 +28,7 @@ $(document).ready(function () {
             var xmlDoc = this.responseXML;
             var x = xmlDoc.getElementsByTagName("inquiry")[0];
             loadPic(id);
+            
             document.getElementById('firstName').value = x.getElementsByTagName('firstName')[0].innerHTML;
             document.getElementById('lastName').value = x.getElementsByTagName('lastName')[0].innerHTML;
             document.getElementById('eMail').value = x.getElementsByTagName('emailId')[0].innerHTML;
@@ -32,7 +40,7 @@ $(document).ready(function () {
             
         }
     };
-    xmlhttp.open("GET", "http://localhost:46854/HIRestApp/webresources/inquiry.inquiry/getInquiryById/" + id, true);
+    xmlhttp.open("GET", base_url+"/webresources/inquiry.inquiry/getInquiryById/" + id, true);
     xmlhttp.send();
 });
 });
@@ -128,9 +136,10 @@ function loadAnotherDoc(id) {
             document.getElementById('specialNote').value = x.getElementsByTagName('note')[0].innerHTML;
             document.getElementById('backlogsBachelor').value = x.getElementsByTagName('backlogsBach')[0].innerHTML;
             //alert(id);
+            
         }
     };
-    xmlhttp.open("GET", "http://localhost:46854/HIRestApp/webresources/inquiry.inquirydetails/getInquiryById/" + id, true);
+    xmlhttp.open("GET", base_url+"/webresources/inquiry.inquirydetails/getInquiryById/" + id, true);
     xmlhttp.send();
 }
 ;
@@ -225,7 +234,7 @@ $(document).ready(function () {
                 mockSAT: mockSAT, dateSAT: dateSAT
             },
             type: "put",
-            url: "http://localhost:46854/HIRestApp/webresources/inquiry.inquirydetails/addInquiryDetails",
+            url: base_url+"/webresources/inquiry.inquirydetails/addInquiryDetails",
             success: function (data) {
                 document.getElementById('success-alert').textContent = data;
                 document.getElementById('success-alert').style = "block";
@@ -251,7 +260,7 @@ $(document).ready(function () {
         $.ajax({
             data: { id  : id  },
             type: "POST",
-            url: "http://localhost:46854/HIRestApp/webresources/inquiry.documents/uploadFile",
+            url: base_url+"/webresources/inquiry.documents/uploadFile",
             success: function (data) {
                 alert("success");
             },
@@ -284,7 +293,7 @@ function loadPic(id) {
             
         }
     };
-    xmlhttp.open("GET", "http://localhost:46854/HIRestApp/webresources/inquiry.documents/getDocumentsList/" + id, true);
+    xmlhttp.open("GET", base_url+"/webresources/inquiry.documents/getDocumentsList/" + id, true);
     xmlhttp.send();
 }
 ;

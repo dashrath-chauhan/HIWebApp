@@ -174,4 +174,10 @@ public class FollowupDetailsFacadeREST extends AbstractFacade<FollowupDetails> {
         List<FollowupDetails> fpDetails = findBy("findByInquiryId", id);
         return fpDetails;
     }
+    
+    public void removeByInquiryId(String inquiryId) {
+        List<Object> valueList = new ArrayList<>();
+        valueList.add(inquiryId);
+        super.removeBy("FollowupDetails.removeByInquiryId", inquiryId);
+    }
 }

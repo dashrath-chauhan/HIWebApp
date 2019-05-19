@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+//--------------------------------------------------------------------------------------
 
 $(document).ready(function () {
     $(document).on('click', '#btnSend', function (e) {
@@ -20,7 +22,7 @@ $(document).ready(function () {
         $.ajax({
             data: { inquiryId  : inquiryId, documents: cars  },
             type: "post",
-            url: "http://localhost:46854/HIRestApp/webresources/inquiry.documentset/prepareDocumentSet",
+            url: base_url+"/webresources/inquiry.documentset/prepareDocumentSet",
             success: function (data) {
                 //alert("success");
                 document.getElementById('success-alert').textContent = data;

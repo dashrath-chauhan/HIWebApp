@@ -33,6 +33,8 @@
                             <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/view-inquiry.jsp">View Inquiry</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/inquiry-details.jsp">Inquiry Details</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/hold-inquiries.jsp">OnHold Inquiries</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown mr-4 ml-4">
@@ -83,6 +85,7 @@
         </nav>
         <div class="jumbotron vertical-center" id="jumbo-form">
             <h3 class="display-5 container">Inquiries FollowUp</h3>
+            <h5 class="display-5 container text-info">***Table rows marked in green background indicates the inquiries that is scheduled for followup today.***</h5>
             <hr class="my-5 container" id="form-header" style="display:none;">
             <form class="form container" id="follow-form" name="follow-form" style="display:none;">
                 <div class="form-row">
@@ -136,10 +139,11 @@
             <hr class="my-5 container">
             <div class="row container" style="margin:0 auto;">
                 <div class="col-lg-5">
+                    
                     <table id="inquiries_table" class="table table-striped table-bordered">
                         <thead class="thead-dark">
                             <tr>                                    
-                                <th>Inquiry Id</th>
+                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Mobile no</th>
                             </tr>
@@ -147,9 +151,10 @@
                         <tbody id="table-data">
                         </tbody>
                     </table>
-                    <button class="btn btn-outline-success my-2 my-sm-0" id="followUpReport" type="button">Download Followup Report</button>
+                    <button class="btn btn-outline-dark my-2 my-sm-0 col-lg-5 ml-2" id="todayFollowUpReport" type="button">Today's Report</button>
+                    <button class="btn btn-outline-dark my-2 my-sm-0 col-lg-5" id="completeFollowUpReport" type="button">Complete Report</button>
                     <div class="form-group col-lg-12 mt-3">
-                        <div id="success-alert" class="alert alert-success" style="display:none;">
+                        <div id="success-report" class="alert alert-success" style="display:none;">
                             <strong></strong>
                         </div>
                     </div>

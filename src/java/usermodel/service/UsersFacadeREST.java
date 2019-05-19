@@ -11,6 +11,7 @@ import Inquiry.InquiryDetails;
 import Inquiry.service.InquiryDetailsFacadeREST;
 import Inquiry.service.InquiryFacadeREST;
 import static Inquiry.service.InquiryFacadeREST.randomAlphaNumeric;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -212,7 +214,29 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         System.out.println("output" + output);
         return output;
     }
-
+    public void createDirectory(){
+        String path = "e://Heer International/Reports/";
+        File directory = new File(path);
+        if (! directory.exists()){
+            directory.mkdir();
+        }
+    }
+    
+    public void createMainDirectory(){
+        String path = "e://Heer International/";
+        File directory = new File(path);
+        if (! directory.exists()){
+            directory.mkdir();
+        }
+    }
+    
+    public void createSubDirectory(String inquiryId){
+        String path = "e://Heer International/Reports/"+inquiryId;
+        File directory = new File(path);
+        if (! directory.exists()){
+            directory.mkdir();
+        }
+    }
     //retrieve all users
     @PUT
     @Path("getInvoice")
@@ -220,6 +244,9 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Produces({"text/plain"})
     public String getInvoice(@FormParam("inquiryId") String inquiryId, @FormParam("applicationCharges") String applicationCharges,
             @FormParam("processCharges") String processCharges) {
+        createMainDirectory();
+        createDirectory();
+        
         String output = "";
         try {
             int totalAmount = Integer.parseInt(applicationCharges) + Integer.parseInt(processCharges);
@@ -237,8 +264,9 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             JasperCompileManager.compileReportToFile(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\invoice1.jrxml");
             jasperPrint = JasperFillManager.fillReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\invoice1.jasper", new HashMap(),
                     new JRTableModelDataSource(tableModel));
-            JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/" + inquiryId + "_Invoice.pdf");
-            output += "Invoice generated.";
+            String downloadFileLocation = "e://Heer International/Reports/"+inquiryId;
+            JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation + "_Invoice.pdf");
+            output += "Invoice generated. \nPath: e://Heer International/Reports/"+inquiryId+ "_Invoice.pdf";
             
         } catch (JRException ex) {
             Logger.getLogger(UsersFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
@@ -252,6 +280,8 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
     @Produces({"text/plain"})
     public String getInvoice(@FormParam("inquiryId") String inquiryId) {
+        createMainDirectory();
+        createDirectory();
         String output = "";
         try {
             
@@ -272,8 +302,9 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             JasperCompileManager.compileReportToFile(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\basicReport.jrxml");
             jasperPrint = JasperFillManager.fillReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\basicReport.jasper", new HashMap(),
                     new JRTableModelDataSource(tableModel));
-            JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/" + inquiryId + "_Basic_Report.pdf");
-            output += "Report generated.";
+            String downloadFileLocation = "e://Heer International/Reports/"+inquiryId+ "_Basic_Report.pdf";
+            JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
+            output += "Report generated. \nPath: e://Heer International/Reports/"+inquiryId+"_Basic_Report.pdf";
             
         } catch (JRException ex) {
             Logger.getLogger(UsersFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
@@ -287,6 +318,8 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
     @Produces({"text/plain"})
     public String briefReport(@FormParam("dateFrom") String dateFrom, @FormParam("dateTo") String dateTo) {
+        createMainDirectory();
+        createDirectory();
         String output = "";
         //String[] valueString = date.split(",");       
         List<Inquiry> inquries = inquiryFacadeREST.findBy("findByDateBetween", dateFrom+","+dateTo);
@@ -309,8 +342,9 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             String home = System.getProperty("user.home");
             JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\briefReport.jrxml");
             jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/Brief_Report.pdf");
-            output += "Report generated.";
+            String downloadFileLocation = "e://Heer International/Reports/"+dateFrom+"-"+dateTo+"_Brief_Report.pdf";
+            JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
+            output += "Report generated. \nPath: e://Heer International/Reports/"+dateFrom+"-"+dateTo+"_Brief_Report.pdf";
             
         } catch (JRException ex) {
             Logger.getLogger(UsersFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
@@ -325,6 +359,8 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
     @Produces({"text/plain"})
     public String inquiryReportById(@FormParam("inquiryId") String inquiryId) {
+        createMainDirectory();
+        createDirectory();
         String output = "";
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         Inquiry inquryBasic = inquiryFacadeREST.find(inquiryId);
@@ -400,8 +436,9 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             String home = System.getProperty("user.home");
             JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\inquiryReport.jrxml");
             jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/"+inquiryId+"_Inqury_Report.pdf");
-            output += "Report generated.";
+            String downloadFileLocation = "e://Heer International/Reports/"+inquiryId+"_Inqury_Report.pdf";
+            JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
+            output += "Report generated. \nPath: e://Heer International/Reports/"+inquiryId+"_Inqury_Report.pdf";
             
         } catch (JRException ex) {
             Logger.getLogger(UsersFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
@@ -415,11 +452,11 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
     @Produces({"text/plain"})
     public String AfolowUpReport(@FormParam("date") String date) {
+        createMainDirectory();
+        createDirectory();
         String output = "";
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         List<FollowUp> inquries = inquiryFacadeREST.todaysApplicationsFollowUps(date);
-        System.out.println(inquries.get(0).getInquiryId());
-        System.out.println(inquries.get(1).getInquiryId());
         List<Map<String,?>> dataSource = new ArrayList<Map<String,?>>();
         try {
             JasperPrint jasperPrint = null;
@@ -438,25 +475,28 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             String home = System.getProperty("user.home");
             JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\followUp_Report.jrxml");
             jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/"+date+"_FollowUp_Report.pdf");
-            output += "Report generated.";
+            String downloadFileLocation = "e://Heer International/Reports/"+date+"_A_FollowUp_Report.pdf";
+            JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
+            output += "Report generated.\nPath: e://Heer International/Reports/"+date+"_A_FollowUp_Report.pdf";
             
         } catch (JRException ex) {
             Logger.getLogger(UsersFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
         }
         return output;
     }
+    
     //Inquiry followup report
     @PUT
-    @Path("IfolowUpReport")
+    @Path("completeAfolowUpReport")
     @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
     @Produces({"text/plain"})
-    public String IfolowUpReport(@FormParam("date") String date) {
+    public String completeAfolowUpReport() {
+        createMainDirectory();
+        createDirectory();
         String output = "";
+        Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-        List<FollowUp> inquries = inquiryFacadeREST.todaysInquriesFollowUps(date);
-        System.out.println(inquries.get(0).getInquiryId());
-        System.out.println(inquries.get(1).getInquiryId());
+        List<FollowUp> inquries = inquiryFacadeREST.todaysApplicationsFollowUps();
         List<Map<String,?>> dataSource = new ArrayList<Map<String,?>>();
         try {
             JasperPrint jasperPrint = null;
@@ -475,8 +515,88 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             String home = System.getProperty("user.home");
             JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\followUp_Report.jrxml");
             jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/"+date+"_FollowUp_Report.pdf");
-            output += "Report generated.";
+            String downloadFileLocation = "e://Heer International/Reports/CompleteA_FollowUp_Report.pdf";
+            JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
+            output += "Report generated.\nPath: e://Heer International/Reports/"+dateFormat.format(date)+"_CompleteA_FollowUp_Report.pdf";
+            
+        } catch (JRException ex) {
+            Logger.getLogger(UsersFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return output;
+    }
+    
+    //Inquiry followup report
+    @PUT
+    @Path("IfolowUpReport")
+    @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
+    @Produces({"text/plain"})
+    public String IfolowUpReport(@FormParam("date") String date) {
+        createMainDirectory();
+        createDirectory();
+        String output = "";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        List<FollowUp> inquries = inquiryFacadeREST.todaysInquriesFollowUps(date);
+        List<Map<String,?>> dataSource = new ArrayList<Map<String,?>>();
+        try {
+            JasperPrint jasperPrint = null;
+            
+            for(int i=0; i<inquries.size(); i++){
+                Map<String,Object> m = new HashMap<String,Object>();
+                m.put("COLUMN_0", inquries.get(i).getInquiryId());
+                m.put("COLUMN_1", inquries.get(i).getFirstName()+" "+inquries.get(i).getLastName());
+                m.put("COLUMN_2", inquries.get(i).getMobile());
+                m.put("COLUMN_3", dateFormat.format(inquries.get(i).getLastFollowupDate()).toString());
+                m.put("COLUMN_4", inquries.get(i).getDescription());
+                dataSource.add(m);
+            }
+            
+            JRDataSource jrDataSource = new JRBeanCollectionDataSource(dataSource);
+            String home = System.getProperty("user.home");
+            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\followUp_Report.jrxml");
+            jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
+            String downloadFileLocation = "e://Heer International/Reports/"+date+"_I_FollowUp_Report.pdf";
+            JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
+            output += "Report generated.\nPath: e://Heer International/Reports/"+date+"_I_FollowUp_Report.pdf";
+            
+        } catch (JRException ex) {
+            Logger.getLogger(UsersFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return output;
+    }
+    
+    //Inquiry followup report
+    @PUT
+    @Path("completeIfolowUpReport")
+    @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
+    @Produces({"text/plain"})
+    public String completeIfolowUpReport() {
+        createMainDirectory();
+        createDirectory();
+        String output = "";
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        List<FollowUp> inquries = inquiryFacadeREST.todaysInquriesFollowUps();
+        List<Map<String,?>> dataSource = new ArrayList<Map<String,?>>();
+        try {
+            JasperPrint jasperPrint = null;
+            
+            for(int i=0; i<inquries.size(); i++){
+                Map<String,Object> m = new HashMap<String,Object>();
+                m.put("COLUMN_0", inquries.get(i).getInquiryId());
+                m.put("COLUMN_1", inquries.get(i).getFirstName()+" "+inquries.get(i).getLastName());
+                m.put("COLUMN_2", inquries.get(i).getMobile());
+                m.put("COLUMN_3", dateFormat.format(inquries.get(i).getLastFollowupDate()).toString());
+                m.put("COLUMN_4", inquries.get(i).getDescription());
+                dataSource.add(m);
+            }
+            
+            JRDataSource jrDataSource = new JRBeanCollectionDataSource(dataSource);
+            String home = System.getProperty("user.home");
+            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\followUp_Report.jrxml");
+            jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
+            String downloadFileLocation = "e://Heer International/Reports/CompleteI_FollowUp_Report.pdf";
+            JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
+            output += "Report generated. \nPath: e://Heer International/Reports/"+dateFormat.format(date)+"_CompleteI_FollowUp_Report.pdf";
             
         } catch (JRException ex) {
             Logger.getLogger(UsersFacadeREST.class.getName()).log(Level.SEVERE, null, ex);

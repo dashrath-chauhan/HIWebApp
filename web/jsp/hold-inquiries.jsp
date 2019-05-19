@@ -1,6 +1,6 @@
 <%-- 
-    Document   : convertoapp
-    Created on : Jan 17, 2019, 10:17:51 PM
+    Document   : hold-inquiries
+    Created on : May 12, 2019, 4:17:02 PM
     Author     : dashrath chauhan
 --%>
 
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Upload Documents - Heer International</title>
+        <title>View Hold Inquiry - Heer International</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/dateTimePicker/jquery.datetimepicker.css">
         <% System.setProperty("java.awt.headless", "false");%>
@@ -84,83 +84,54 @@
             </div>
         </nav>
         <div class="jumbotron vertical-center" id="jumbo-form">
-            <h3 class="display-5 text-center">Upload Documents:</h3>
-            <form class="col-lg-6 container col-md-6 col-md-offset-6" method="post" action=base_url+"/webresources/inquiry.documents/uploadFile" enctype="multipart/form-data">
+            <h3 class="display-5">All Inquries</h3>
+            <hr class="my-5">
+            <div class="container">
                 <div class="row">
-                    <hr class="my-5 container mt-0">
-                    <div class="form-group col-lg-12">
-                        <input type="text" id="path" class="form-control" placeholder="Inquiry Id" hidden="true" value="<%=request.getContextPath()%>/images">
-                    </div>
-                    <div class="form-group col-lg-8">
-                        <input type="text" id="inquiryId" class="form-control" placeholder="Inquiry Id">
-                    </div>
-                    <div class="form-group col-lg-4">
-                        <button class="btn btn-dark my-2 my-sm-0" id="getDocs" type="button">Get Documents List</button>
-                    </div>
-                    <div class="form-group col-lg-12 mt-3 text-primary">
-                        <select class="form-control text-primary" id="documentName">
-                        </select>
-                    </div>
-                    
-                    <div class="form-group col-lg-12 mb-3 ml-3 mt-2 text-primary">
-                        <input type="file" class="custom-file-input" id="file">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
-                    </div>
-                    
-                    <div class="form-group col-lg-12 mt-3">
-                        <div id="success-alert" class="alert alert-success" style="display:none;">
-                            <strong></strong>
-                        </div>
-                    </div>
-                    <div class="form-group col-lg-12 mt-3">
-                        <div id="danger-alert" class="alert alert-danger" style="display:none;">
-                            <strong></strong>
-                        </div>
-                    </div>
-                    <div class="container mt-0">
-                        <button type="button" name="btnSend" id="btnSend" onclick="send()" class="btn btn-dark btn-sm col-lg-12">Upload</button>
-                    </div>
-                    <hr class="my-5 container mt-0">
-                    
-                </div>
-            </form>
+                    <hr class="my-5">
+                    <table id="inquiries_table" class="table table-striped table-bordered" style="width:100%">
+                        <thead class="thead-dark">
+                            <tr>                                    
+                                <th>Inquiry Id</th>
+                                <th>Name</th>
+                                <th>Mobile no</th>
+                                <th>Email</th>
+                                <th>Inquiry source</th>
+                                <th>Gender</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-data">
 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/documents.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/users.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/hold-inquiries.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/dateTimePicker/jquery.datetimepicker.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/dateTimePicker/jquery.datetimepicker.full.min.js"></script>
         <script>
-            var pathArray = window.location.pathname.split('/');
-var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
-//--------------------------------------------------------------------------------------
-                            function send() {
-                                var xhttp = new XMLHttpRequest();
-                                xhttp.open("POST", base_url+"/webresources/inquiry.documents/uploadFile", false)
-                                var input = document.querySelector('#file').files[0];
-                                var fData = new FormData();
-                                fData.append("file", input);
-                                fData.append("inquiryId", document.getElementById("inquiryId").value);
-                                fData.append("documentName", document.getElementById("documentName").value);
-                                xhttp.send(fData);
-                                document.getElementById('success-alert').textContent = document.getElementById("documentName").value + " uploaded";
-                                document.getElementById('success-alert').style = "block";
-                            }
-                            
-                            function getCookieValue(a) {
-                                var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
-                                return b ? b.pop() : '';
-                            }
-                            window.onload = function () {
-                                var is_Admin = getCookieValue("isadmin");
-                                //alert(is_Admin);
-                                if (is_Admin == 1) {
-                                    document.getElementById('newUser').style.display = "block";
-                                } else {
-                                    document.getElementById('newUser').style.display = "none";
-                                }
-                            }
+            $('#getFollowUpsDate').datetimepicker();
+
+            function getCookieValue(a) {
+                var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+                return b ? b.pop() : '';
+            }
+            window.onload = function () {
+                var is_Admin = getCookieValue("isadmin");
+                //alert(is_Admin);
+                if (is_Admin == 1) {
+                    document.getElementById('newUser').style.display = "block";
+                } else {
+                    document.getElementById('newUser').style.display = "none";
+                }
+            }
 
         </script>
     </body>

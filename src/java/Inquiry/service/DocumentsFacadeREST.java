@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -114,36 +115,24 @@ public class DocumentsFacadeREST extends AbstractFacade<Documents> {
         return em;
     }
     
-//    @POST
-//    @Path("uploadFile")
-//    @Consumes(MediaType.MULTIPART_FORM_DATA)
-//    @Produces(MediaType.TEXT_PLAIN)
-//    public String uploadFile(@FormDataParam("file") InputStream uploadedInputStream,
-//            @FormDataParam("file") FormDataContentDisposition fileDetails, @FormDataParam("id") String id){
-//        
-//        saveFile(uploadedInputStream,fileDetails,id);
-//        return "File uploaded sccessfully.";
-//    }
-//    
-//    private void saveFile(InputStream uploadedInputStream, FormDataContentDisposition fileDetails, String inquiryId){
-//        String uploadFileLocation = "e://Documents/"+inquiryId+"_"+fileDetails.getFileName();
-//        try{
-//            OutputStream out = new FileOutputStream(new File(uploadFileLocation));
-//            int read=0;
-//            byte[] bytes = new byte[1024];
-//            out = new FileOutputStream(new File(uploadFileLocation));
-//            while((read = uploadedInputStream.read(bytes)) != -1){
-//                out.write(bytes, 0, read);
-//            }
-//            out.flush();
-//            out.close();
-//        } catch (IOException e){
-//            e.printStackTrace();
-//        }
-//    }
-    
     public void createDirectory(){
-        String path = "e://Documents/";
+        String path = "e://Heer International/Documents/";
+        File directory = new File(path);
+        if (! directory.exists()){
+            directory.mkdir();
+        }
+    }
+    
+    public void createMainDirectory(){
+        String path = "e://Heer International/";
+        File directory = new File(path);
+        if (! directory.exists()){
+            directory.mkdir();
+        }
+    }
+    
+    public void createSubDirectory(String inquiryId){
+        String path = "e://Heer International/Documents/"+inquiryId;
         File directory = new File(path);
         if (! directory.exists()){
             directory.mkdir();
@@ -156,7 +145,9 @@ public class DocumentsFacadeREST extends AbstractFacade<Documents> {
     @Produces(MediaType.TEXT_PLAIN)
     public String addNew(FormDataMultiPart form, @FormDataParam("inquiryId") String inquiryId,
             @FormDataParam("documentName") String documentName){
+        createMainDirectory();
         createDirectory();
+        createSubDirectory(inquiryId);
         FormDataBodyPart filePart = form.getField("file");
         ContentDisposition des = filePart.getContentDisposition();
         String fileName = des.getFileName();
@@ -173,9 +164,10 @@ public class DocumentsFacadeREST extends AbstractFacade<Documents> {
         
         if(documentName.contentEquals("Passport size photograph")){
             String home = System.getProperty("user.home");
-            uploadFileLocation = home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\images\\"+inquiryId+"_"+fileName;
+            uploadFileLocation = home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\images\\"+inquiryId+"_Pic_"+fileName;
         } else {
-            uploadFileLocation = "e://Documents/"+inquiryId+"_"+fileName;
+            createSubDirectory(inquiryId);
+            uploadFileLocation = "e://Heer International/Documents/"+inquiryId+"/"+documentName+"_"+fileName;
         }
         System.out.println(uploadFileLocation);
         try(OutputStream out = new FileOutputStream(new File(uploadFileLocation))){
@@ -215,6 +207,37 @@ public class DocumentsFacadeREST extends AbstractFacade<Documents> {
         return d;
     }
     
+    public void removeByInquiryIdAndDocumentName(String memCd, String accNo) {
+        List<Object> valueList = new ArrayList<>();
+        valueList.add(memCd);
+        valueList.add(accNo);
+        super.removeBy("Documents.removeByInquiryIdAndDocumentName", valueList);
+    }
+    
+    @PUT
+    @Path("deleteDocument")
+    @Produces({"text/plain"})
+    @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
+    public String deleteDocument(@FormParam("documentName") String documentName, @FormParam("inquiryId") String inquiryId){
+       Documents doc = findBy("findByInquiryIdAndDocumentName", inquiryId+","+documentName).get(0);
+       String output = "";
+       String path = doc.getDocumentsPK().getPath();
+       DocumentSet ds = documentSetFacadeREST.findBy("findByInquiryIdAndDocumentName", inquiryId+","+documentName).get(0);
+        try {
+            File file = new File(path);
+            if (file.delete()) {
+                removeByInquiryIdAndDocumentName(inquiryId,documentName);
+                ds.setStatus(0);
+                output += path+" deleted";
+            } else {
+                output += path+" doesn't exist";
+            }
+        } catch (Exception e) {
+            output += "Something went wrong";
+        }
+        return output;
+    }
+    
     @GET
     @Path("by/{namedQuery}/{attrValue}")
     @Produces({"application/xml", "application/json"})
@@ -225,6 +248,12 @@ public class DocumentsFacadeREST extends AbstractFacade<Documents> {
             case "findByInquiryId":
                 valueList.add(valueString[0]);
                 break;
+                
+            case "findByInquiryIdAndDocumentName":
+                valueList.add(valueString[0]);
+                valueList.add(valueString[1]);
+                break;
+            
             case "findByEmail":
                 valueList.add(valueString[0]);
                 break;

@@ -20,7 +20,7 @@ function loadXMLDoc() {
             console.log("3");
         }
     };
-    xmlhttp.open("GET", base_url+"/webresources/followup.followup/getAllApplications", true);
+    xmlhttp.open("GET", base_url+"/webresources/followup.followup/getAllHoldInquries", true);
     console.log("4");
     xmlhttp.send();
 }
@@ -36,7 +36,7 @@ function myFunction(xml) {
             application_table += "<td>" + y[i].getElementsByTagName('firstName')[0].innerHTML + " " + y[i].getElementsByTagName('lastName')[0].innerHTML + "</td>";
             application_table += "<td>" + y[i].getElementsByTagName('email')[0].innerHTML + "</td>";
             application_table += "<td>" + y[i].getElementsByTagName('mobile')[0].innerHTML + "</td>";
-            application_table += '<td class="hold"><button type="button" name="hold" class="btn btn-dark my-2 my-sm-0" id="'+y[i].getElementsByTagName("inquiryId")[0].innerHTML+'">Hold</button></td>';
+            application_table += '<td class="delete"><button type="button" name="delete" class="btn btn-danger my-2 my-sm-0" id="'+y[i].getElementsByTagName("inquiryId")[0].innerHTML+'">Delete</button></td>';
             application_table += "</tr>";
             
         }
@@ -66,23 +66,13 @@ function parseDate(date) {
 //*****************************************************************************
 
 $(document).ready(function () {
-    $('#table-data').on("click", "td.id", function(e) {
-        var inquiryId = this.innerHTML;
-        sessionStorage.setItem("inquiryId", inquiryId);
-        window.location.replace("/" + pathArray[1] + "/jsp/inquiry-details.jsp");
-    });
-});
-//-------------------------------------------------------------------------------
-//*****************************************************************************
-
-$(document).ready(function () {
-    $('#table-data').on("click", "td.hold", function(e) {
+    $('#table-data').on("click", "td.delete", function(e) {
         var inquiryId = this.firstChild.getAttribute('id');
         var email = getCookieValue("email");
         $.ajax({
-            data: { inquiryId  : inquiryId, email: email  },
+            data: { inquiryId  : inquiryId },   
             type: "put",
-            url: base_url+"/webresources/inquiry.inquiry/putOnHold",
+            url: base_url+"/webresources/followup.followup/deleteInquiry",
             success: function (data) {
                 alert(data);
                 loadXMLDoc();

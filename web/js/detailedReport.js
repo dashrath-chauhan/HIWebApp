@@ -3,6 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+//--------------------------------------------------------------------------------------
 function getCookieValue(a) {
     var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
     return b ? b.pop() : '';
@@ -15,7 +18,7 @@ $(document).ready(function () {
         $.ajax({
             data: { inquiryId  : inquiryId },
             type: "put",
-            url: "http://localhost:46854/HIRestApp/webresources/usermodel.users/inquiryReportById",
+            url: base_url+"/webresources/usermodel.users/inquiryReportById",
             success: function (data) {
                 //alert("success");
                 document.getElementById('success-alert').textContent = data;

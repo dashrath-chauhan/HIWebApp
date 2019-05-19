@@ -33,6 +33,8 @@
                             <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/view-inquiry.jsp">View Inquiry</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/inquiry-details.jsp">Inquiry Details</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/hold-inquiries.jsp">OnHold Inquiries</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown mr-4 ml-4">
@@ -105,6 +107,20 @@
 
                     </tbody>
                 </table>
+                <hr class="my-5">
+                <div class="row mt-4">
+                    <div class="form-group col-lg-10">
+                        <select class="form-control text-primary" id="documentName"> </select>
+                    </div>
+                    <div class="form-group col-lg-2">
+                        <button class="btn btn-danger" id="getUploadedDocs" type="button">Delete</button>
+                    </div>
+                </div>
+                <div class="form-group col-lg-12 mt-3">
+                    <div id="success-alert" class="alert alert-success" style="display:none;">
+                        <strong></strong>
+                    </div>
+                </div>
             </form>
 
         </div>
@@ -113,12 +129,13 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/documents.js"></script>
-        
         <script type="text/javascript" src="${pageContext.request.contextPath}/dateTimePicker/jquery.datetimepicker.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/dateTimePicker/jquery.datetimepicker.full.min.js"></script>
         <script>
             $('#getFollowUpsDate').datetimepicker();
-
+            var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+//--------------------------------------------------------------------------------------
             function getCookieValue(a) {
                 var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
                 return b ? b.pop() : '';
@@ -134,7 +151,7 @@
             }
             
             newUser.onclick = function (e) {
-                var pathArray = window.location.pathname.split('/');
+                
                 window.location.replace("/" + pathArray[1] + "/jsp/new-user.jsp");
             };
 

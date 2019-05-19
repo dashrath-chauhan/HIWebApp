@@ -11,6 +11,7 @@ import Inquiry.InquiryDetails;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +28,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -302,18 +304,41 @@ public class InquiryDetailsFacadeREST extends AbstractFacade<InquiryDetails> {
     
     //get inquiry details by id
     @GET
-    @Path("getInquiryById/{id}")
+    @Path("getInquiryById/{inquiryId}")
     @Produces({"application/xml", "application/json", "text/plain"})
-    public Response getInquiryById(@PathParam("id") String id) {
+    public Response getInquiryById(@PathParam("inquiryId") String inquiryId) {
         String output = "";
         Response.ResponseBuilder responseBuilder = Response.status(200);
         try {
-            InquiryDetails inquiry = find(id);
-            responseBuilder.type(MediaType.APPLICATION_XML).entity(inquiry);
+            InquiryDetails inquiry = find(inquiryId);
+            if(inquiry != null)
+                responseBuilder.type(MediaType.APPLICATION_XML).entity(inquiry);
         } catch (Exception e) {
             output += "Invalid Id...";
             responseBuilder.type(MediaType.TEXT_PLAIN).entity(output);
         }
         return responseBuilder.build();
+    }
+    
+    public void removeByInquiryId(String inquiryId) {
+        List<Object> valueList = new ArrayList<>();
+        valueList.add(inquiryId);
+        super.removeBy("InquiryDetails.removeByInquiryId", inquiryId);
+    }
+    
+    @GET
+    @Path("by/{namedQuery}/{attrValue}")
+    @Produces({"application/xml", "application/json"})
+    public List<InquiryDetails> findBy(@PathParam("namedQuery") String query, @PathParam("attrValue") String values) {
+        String[] valueString = values.split(",");
+        List<Object> valueList = new ArrayList<>();
+        switch (query) {
+            case "findByInquiryId":
+                valueList.add(valueString[0]);
+                break;
+        }
+        System.out.println("2: " + valueList);
+        System.out.println("3: " + query);
+        return super.findBy("InquiryDetails." + query, valueList);
     }
 }

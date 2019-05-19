@@ -33,6 +33,8 @@
                             <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/view-inquiry.jsp">View Inquiry</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/inquiry-details.jsp">Inquiry Details</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/hold-inquiries.jsp">OnHold Inquiries</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown mr-4 ml-4">
@@ -154,8 +156,8 @@
                         <label class="form-check-label" for="lor">LOR</label>
                     </div>
                     <div class="form-group col-lg-3">
-                        <input class="form-check-input" type="checkbox" id="itg" value="IELTS/TOEFL/GRE">
-                        <label class="form-check-label" for="itg">IELTS/TOEFL/GRE</label>
+                        <input class="form-check-input" type="checkbox" id="itg" value="IELTS or TOEFL or GRE">
+                        <label class="form-check-label" for="itg">IELTS or TOEFL or GRE</label>
                     </div>
                     <div class="form-group col-lg-3">
                         <input class="form-check-input" type="checkbox" id="passport" value="Passport">
@@ -177,16 +179,16 @@
                         <label class="form-check-label" for="rspos">Relationship Proof of Sponsor</label>
                     </div>
                     <div class="form-group col-lg-3">
-                        <input class="form-check-input" type="checkbox" id="feeR" value="Fee Receipt/Fee Draft/Telegraphic Transfer">
-                        <label class="form-check-label" for="feeR">Fee Receipt/Fee Draft/Telegraphic Transfer</label>
+                        <input class="form-check-input" type="checkbox" id="feeR" value="Fee Receipt or Fee Draft or Telegraphic Transfer">
+                        <label class="form-check-label" for="feeR">Fee Receipt or Fee Draft or Telegraphic Transfer</label>
                     </div>
                     <div class="form-group col-lg-3">
-                        <input class="form-check-input" type="checkbox" id="coe" value="120/COE">
-                        <label class="form-check-label" for="coe">120/COE</label>
+                        <input class="form-check-input" type="checkbox" id="coe" value="120 or COE">
+                        <label class="form-check-label" for="coe">120 or COE</label>
                     </div>
                     <div class="form-group col-lg-3">
-                        <input class="form-check-input" type="checkbox" id="aip" value="PVA/AIP">
-                        <label class="form-check-label" for="aip">PVA/AIP</label>
+                        <input class="form-check-input" type="checkbox" id="aip" value="PVA or AIP">
+                        <label class="form-check-label" for="aip">PVA or AIP</label>
                     </div>
                     <div class="form-group col-lg-3">
                         <input class="form-check-input" type="checkbox" id="degreePG" value="Marriage Certificate">
@@ -271,7 +273,9 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/documents-set.js"></script>
         <script>
-
+var pathArray = window.location.pathname.split('/');
+var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+//--------------------------------------------------------------------------------------
             function getCookieValue(a) {
                 var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
                 return b ? b.pop() : '';
@@ -287,7 +291,7 @@
             }
             
             newUser.onclick = function (e) {
-                var pathArray = window.location.pathname.split('/');
+                
                 window.location.replace("/" + pathArray[1] + "/jsp/new-user.jsp");
             };
 

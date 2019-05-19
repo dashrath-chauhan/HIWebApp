@@ -244,8 +244,9 @@ public class InquiryFacadeREST extends AbstractFacade<Inquiry> {
         String output = "";
         Response.ResponseBuilder responseBuilder = Response.status(200);
         try {
-            Object inquiry = find(id);
-            responseBuilder.type(MediaType.APPLICATION_XML).entity(inquiry);
+            Inquiry inquiry = find(id);
+            if(inquiry != null)
+                responseBuilder.type(MediaType.APPLICATION_XML).entity(inquiry);
         } catch (Exception e) {
             output += "Invalid Id...";
             responseBuilder.type(MediaType.TEXT_PLAIN).entity(output);
@@ -322,6 +323,40 @@ public class InquiryFacadeREST extends AbstractFacade<Inquiry> {
         }
         return fpss;
     }
+    
+    //todays follow ups
+    @GET
+    @Path("todaysInquriesFollowUps")
+    @Produces({"application/xml", "application/json"})
+    @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
+    public List<FollowUp> todaysInquriesFollowUps() {
+        List<FollowUp> fps = followUpFacadeREST.findAll();
+        List<FollowUp> fpss = new ArrayList<FollowUp>();
+        for (int i = 0; i < fps.size(); i++) {
+            if (fps.get(i).getLeadType().contentEquals("I")) {
+                fpss.add(fps.get(i));
+                System.out.println(fps.get(i));
+            }
+        }
+        return fpss;
+    }
+    
+    //todays follow ups
+    @GET
+    @Path("todaysApplicationsFollowUps")
+    @Produces({"application/xml", "application/json"})
+    @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
+    public List<FollowUp> todaysApplicationsFollowUps() {
+        List<FollowUp> fps = followUpFacadeREST.findAll();
+        List<FollowUp> fpss = new ArrayList<FollowUp>();
+        for (int i = 0; i < fps.size(); i++) {
+            if (fps.get(i).getLeadType().contentEquals("A")) {
+                fpss.add(fps.get(i));
+                System.out.println(fps.get(i));
+            }
+        }
+        return fpss;
+    }
 
     //todays follow ups
     @GET
@@ -368,6 +403,9 @@ public class InquiryFacadeREST extends AbstractFacade<Inquiry> {
             case "findByIsInquiry":
                 valueList.add(valueString[0]);
                 break;
+            case "findById":
+                valueList.add(valueString[0]);
+                break;
             case "findByDateBetween":
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                  {
@@ -403,5 +441,40 @@ public class InquiryFacadeREST extends AbstractFacade<Inquiry> {
             id = max + 1;
         }
         return id;
+    }
+    
+    //update inquiry
+    @PUT
+    @Path("putOnHold")
+    @Produces("text/plain")
+    @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
+    public String putOnHold(@FormParam("inquiryId") String id, @FormParam("email") String email) {
+        String output = "";
+        try {
+            Inquiry inquiry = find(id);
+            FollowUp fp = followUpFacadeREST.find(id);
+            System.out.println("Id:" + fp);
+            fp.setLeadType("H");
+            Users user = usersFacadeREST.findBy("findByEmail", email).get(0);
+            fp.setConvertedBy(user.getName());
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            System.out.println(dateFormat.format(date));
+            fp.setConvertedOn(date);
+            fp.setEmail(inquiry.getEmailId());
+            inquiry.setIsInquiry("IH");
+            followUpFacadeREST.edit(fp);
+            edit(inquiry);
+            output = "Inquiry Id: " + fp.getInquiryId() + " ,is on hold for some time...";
+        } catch (Exception e) {
+            output = "Failed to put On Hold";
+        }
+        return output;
+    }
+    
+    public void removeByInquiryId(String inquiryId) {
+        List<Object> valueList = new ArrayList<>();
+        valueList.add(inquiryId);
+        super.removeBy("Inquiry.removeByInquiryId", inquiryId);
     }
 }

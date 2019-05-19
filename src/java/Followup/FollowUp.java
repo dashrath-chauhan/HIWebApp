@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "FollowUp.findAll", query = "SELECT f FROM FollowUp f")
     , @NamedQuery(name = "FollowUp.findByInquiryId", query = "SELECT f FROM FollowUp f WHERE f.inquiryId = :inquiryId")
+    , @NamedQuery(name = "FollowUp.removeByInquiryId", query = "DELETE FROM FollowUp f WHERE f.inquiryId = :inquiryId")
     , @NamedQuery(name = "FollowUp.findByEmail", query = "SELECT f FROM FollowUp f WHERE f.email = :email")
     , @NamedQuery(name = "FollowUp.findByFirstName", query = "SELECT f FROM FollowUp f WHERE f.firstName = :firstName")
     , @NamedQuery(name = "FollowUp.findByLastName", query = "SELECT f FROM FollowUp f WHERE f.lastName = :lastName")

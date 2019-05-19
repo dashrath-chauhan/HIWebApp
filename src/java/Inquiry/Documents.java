@@ -24,6 +24,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Documents.findAll", query = "SELECT d FROM Documents d")
     , @NamedQuery(name = "Documents.findByInquiryId", query = "SELECT d FROM Documents d WHERE d.documentsPK.inquiryId = :inquiryId")
     , @NamedQuery(name = "Documents.findByDocumentName", query = "SELECT d FROM Documents d WHERE d.documentsPK.documentName = :documentName")
+    , @NamedQuery(name = "Documents.removeByInquiryIdAndDocumentName", query = "DELETE FROM Documents d WHERE d.documentsPK.inquiryId = ?1 AND d.documentsPK.documentName = ?2")
+    , @NamedQuery(name = "Documents.findByInquiryIdAndDocumentName", query = "SELECT d FROM Documents d WHERE d.documentsPK.inquiryId = ?1 AND d.documentsPK.documentName = ?2")
     , @NamedQuery(name = "Documents.findByPath", query = "SELECT d FROM Documents d WHERE d.documentsPK.path = :path")})
 public class Documents implements Serializable {
 
