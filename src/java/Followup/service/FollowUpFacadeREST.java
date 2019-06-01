@@ -190,8 +190,14 @@ public class FollowUpFacadeREST extends AbstractFacade<FollowUp> {
             Logger.getLogger(InquiryDetailsFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
         }
         edit(fp);
-        output = followupDetailsFacadeREST.detailedFollowUp(fp.getInquiryId(),fp.getEmail(),fp.getLastFollowupDate(),fp.getNextFollowupDate(),fp.getDescription());
-        output = fp.getInquiryId() + " updated...";
+       // output = followupDetailsFacadeREST.detailedFollowUp(fp.getInquiryId(),fp.getEmail(),fp.getLastFollowupDate(),fp.getNextFollowupDate(),fp.getDescription());
+        
+        if(fp.getLeadType().contentEquals("A")){
+            output = "Application: "+fp.getInquiryId() + " updated...";
+        }
+        else{
+            output = "Inquiry: "+fp.getInquiryId() + " updated...";
+        } 
         return output;
     }
 
@@ -228,34 +234,38 @@ public class FollowUpFacadeREST extends AbstractFacade<FollowUp> {
     @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
     public String deleteInquiry(@FormParam("inquiryId") String inquiryId){
         String output = "";
+        List<Inquiry> iq = new ArrayList<Inquiry>();
+        List<InquiryDetails> iqD = new ArrayList<InquiryDetails>();
+        List<FollowupDetails> fpD = new ArrayList<FollowupDetails>();
+        List<FollowUp> fp = new ArrayList<FollowUp>();
         
-        Inquiry iq = inquiryFacadeREST.findBy("findById",inquiryId).get(0);
-        InquiryDetails iqD = inquiryDetailsFacadeREST.findBy("findByInquiryId", inquiryId).get(0);
-        FollowupDetails fpD = followupDetailsFacadeREST.findBy("findByInquiryId", inquiryId).get(0);
-        FollowUp fp = followUpFacadeREST.findBy("findByInquiryId", inquiryId).get(0);
+        iq = inquiryFacadeREST.findBy("findById",inquiryId);
+        iqD = inquiryDetailsFacadeREST.findBy("findByInquiryId", inquiryId);
+        fpD = followupDetailsFacadeREST.findBy("findByInquiryId", inquiryId);
+        fp = followUpFacadeREST.findBy("findByInquiryId", inquiryId);
         
-        try {
-            if(iq!= null && iqD != null && fp != null && fpD != null){
-                inquiryFacadeREST.removeByInquiryId(iq.getId());
-                inquiryDetailsFacadeREST.removeByInquiryId(iqD.getInquiryId());
-                followUpFacadeREST.removeByInquiryId(fp.getInquiryId());
-                followupDetailsFacadeREST.removeByInquiryId(fpD.getFollowupDetailsPK().getInquiryId());
-                output += inquiryId+" deleted...";
+        if(iq.size() > 0 && iqD .size() > 0 && fp .size() > 0 && fpD .size() > 0){
+            try {
+            if(iq.get(0) != null && iqD.get(0) != null && fp.get(0) != null && fpD.get(0) != null){
+                //output += "1."+iq.get(0).getId()+", 2."+iqD.get(0).getInquiryId()+", 3."+fp.get(0).getInquiryId()+", 4."+fpD.get(0).getFollowupDetailsPK().getInquiryId();
+                inquiryFacadeREST.removeByInquiryId(iq.get(0));
+                inquiryDetailsFacadeREST.removeByInquiryId(iqD.get(0));
+                followupDetailsFacadeREST.removeByInquiryId(fpD.get(0));
+                followUpFacadeREST.removeByInquiryId(fp.get(0));
+                output += "Inquiry/Application: "+inquiryId+", deleted...";
             } else {
-                output += inquiryId+" cannot delete...";
+                output += "Inquiry/Application: "+inquiryId+", failed to delete...";
             }
-            
-            
         } catch (Exception e) {
-            output += "Something went wrong";
+                output += "Something went wrong";
+            }
         }
+        
         return output;
     }
     
-    public void removeByInquiryId(String inquiryId) {
-        List<Object> valueList = new ArrayList<>();
-        valueList.add(inquiryId);
-        super.removeBy("FollowUp.removeByInquiryId", inquiryId);
+    public void removeByInquiryId(FollowUp fp) {
+        super.remove(fp);
     }
             
 }

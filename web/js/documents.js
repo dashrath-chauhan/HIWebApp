@@ -80,12 +80,12 @@ $(document).ready(function () {
             url: base_url+"/webresources/inquiry.documents/deleteDocument",
             success: function (data) {
                 //alert("success");
-                document.getElementById('success-alert').textContent = data;
-                document.getElementById('success-alert').style = "block";
+                document.getElementById('success-info').textContent = data;
+                document.getElementById('success-info').style = "block";
             },
             error: function (err) {
                 //alert(err);
-                document.getElementById('success-alert').style = "block";
+                document.getElementById('success-info').style = "block";
             }
         });
     });

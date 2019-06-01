@@ -7,9 +7,10 @@ var pathArray = window.location.pathname.split('/');
 var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
 //--------------------------------------------------------------------------------------
 
-$( document ).ready(function() {
+$(document).ready(function() {
     $(document).on('click', '#lobtn', function (e) {
-        document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;domain=localhost;";
+        // document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;domain=localhost;";
+        document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;domain=localhost";
         window.location.replace("/" + pathArray[1] + "/index.jsp");
     });
 
@@ -20,7 +21,7 @@ $( document ).ready(function() {
 
     var email = getCookieValue("email");
     //alert(email);
-    if (email != "") {
+    if (email !== "") {
 
     } else {
         window.location.replace("/" + pathArray[1] + "/index.jsp");

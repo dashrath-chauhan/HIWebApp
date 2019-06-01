@@ -32,8 +32,8 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/view-inquiry.jsp">View Inquiry</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/inquiry-details.jsp">Inquiry Details</a>
-                            <div class="dropdown-divider"></div>
+<!--                            <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/inquiry-details.jsp">Inquiry Details</a>
+                            <div class="dropdown-divider"></div>-->
                             <a class="dropdown-item" href="<%=request.getContextPath()%>/jsp/hold-inquiries.jsp">OnHold Inquiries</a>
                         </div>
                     </li>
@@ -96,9 +96,9 @@
                                 <th>Name</th>
                                 <th>Mobile no</th>
                                 <th>Email</th>
-                                <th>Inquiry source</th>
                                 <th>Gender</th>
-                                <th>Date</th>
+                                <th>Re-initiate</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody id="table-data">

@@ -41,6 +41,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.NewCookie;
+import javax.ws.rs.core.Response;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
@@ -162,7 +164,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         try {
             Users user = findBy("findByName", userName).get(0);
             remove(user);
-            output = user.getName() + " deleted...";
+            output = "User: "+user.getName() + ", deleted...";
         } catch (Exception e) {
             output = "Invalid user...";
         }
@@ -200,19 +202,21 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Path("login")
     @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
     @Produces("text/plain")
-    public String login(@FormParam("email") String email, @FormParam("password") String password) {
+    public Response login(@FormParam("email") String email, @FormParam("password") String password) {
         String output = "";
+        Response.ResponseBuilder responseBuilder = Response.status(200);
         List<Users> users = findBy("findByEmail", email);
         for (int i = 0; i < users.size(); i++) {
             if (password.contentEquals(users.get(i).getPassword())) {
                 output = email + "," + password + "," + users.get(i).getIsAdmin();
+                responseBuilder.type(MediaType.TEXT_PLAIN).entity(output);
                 break;
             } else {
                 output = "";
             }
         }
         System.out.println("output" + output);
-        return output;
+        return responseBuilder.build();
     }
     public void createDirectory(){
         String path = "e://Heer International/Reports/";
@@ -261,8 +265,8 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             };
             tableModel = new DefaultTableModel(data, columnNames);     
             String home = System.getProperty("user.home");
-            JasperCompileManager.compileReportToFile(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\invoice1.jrxml");
-            jasperPrint = JasperFillManager.fillReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\invoice1.jasper", new HashMap(),
+            JasperCompileManager.compileReportToFile(home+"\\Documents\\NetBeansProjects\\HIWebApp\\web\\Reports\\invoice1.jrxml");
+            jasperPrint = JasperFillManager.fillReport(home+"\\Documents\\NetBeansProjects\\HIWebApp\\web\\Reports\\invoice1.jasper", new HashMap(),
                     new JRTableModelDataSource(tableModel));
             String downloadFileLocation = "e://Heer International/Reports/"+inquiryId;
             JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation + "_Invoice.pdf");
@@ -299,8 +303,8 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             };
             tableModel = new DefaultTableModel(data, columnNames);
             String home = System.getProperty("user.home");
-            JasperCompileManager.compileReportToFile(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\basicReport.jrxml");
-            jasperPrint = JasperFillManager.fillReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\basicReport.jasper", new HashMap(),
+            JasperCompileManager.compileReportToFile(home+"\\Documents\\NetBeansProjects\\HIWebApp\\web\\Reports\\basicReport.jrxml");
+            jasperPrint = JasperFillManager.fillReport(home+"\\Documents\\NetBeansProjects\\HIWebApp\\web\\Reports\\basicReport.jasper", new HashMap(),
                     new JRTableModelDataSource(tableModel));
             String downloadFileLocation = "e://Heer International/Reports/"+inquiryId+ "_Basic_Report.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
@@ -340,7 +344,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             }
             JRDataSource jrDataSource = new JRBeanCollectionDataSource(dataSource);
             String home = System.getProperty("user.home");
-            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\briefReport.jrxml");
+            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIWebApp\\web\\Reports\\briefReport.jrxml");
             jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
             String downloadFileLocation = "e://Heer International/Reports/"+dateFrom+"-"+dateTo+"_Brief_Report.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
@@ -434,7 +438,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
                 dataSource.add(m);
             JRDataSource jrDataSource = new JRBeanCollectionDataSource(dataSource);
             String home = System.getProperty("user.home");
-            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\inquiryReport.jrxml");
+            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIWebApp\\web\\Reports\\inquiryReport.jrxml");
             jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
             String downloadFileLocation = "e://Heer International/Reports/"+inquiryId+"_Inqury_Report.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
@@ -473,7 +477,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             
             JRDataSource jrDataSource = new JRBeanCollectionDataSource(dataSource);
             String home = System.getProperty("user.home");
-            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\followUp_Report.jrxml");
+            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIWebApp\\web\\Reports\\followUp_Report.jrxml");
             jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
             String downloadFileLocation = "e://Heer International/Reports/"+date+"_A_FollowUp_Report.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
@@ -513,7 +517,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             
             JRDataSource jrDataSource = new JRBeanCollectionDataSource(dataSource);
             String home = System.getProperty("user.home");
-            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\followUp_Report.jrxml");
+            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIWebApp\\web\\Reports\\followUp_Report.jrxml");
             jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
             String downloadFileLocation = "e://Heer International/Reports/CompleteA_FollowUp_Report.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
@@ -552,7 +556,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             
             JRDataSource jrDataSource = new JRBeanCollectionDataSource(dataSource);
             String home = System.getProperty("user.home");
-            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\followUp_Report.jrxml");
+            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIWebApp\\web\\Reports\\followUp_Report.jrxml");
             jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
             String downloadFileLocation = "e://Heer International/Reports/"+date+"_I_FollowUp_Report.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);
@@ -592,7 +596,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             
             JRDataSource jrDataSource = new JRBeanCollectionDataSource(dataSource);
             String home = System.getProperty("user.home");
-            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\Reports\\followUp_Report.jrxml");
+            JasperReport jreport = JasperCompileManager.compileReport(home+"\\Documents\\NetBeansProjects\\HIWebApp\\web\\Reports\\followUp_Report.jrxml");
             jasperPrint = JasperFillManager.fillReport(jreport, null, jrDataSource);
             String downloadFileLocation = "e://Heer International/Reports/CompleteI_FollowUp_Report.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, downloadFileLocation);

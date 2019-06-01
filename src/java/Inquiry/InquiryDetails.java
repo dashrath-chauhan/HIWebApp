@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author dashrath chauhan
+ * @author OUT
  */
 @Entity
 @Table(name = "inquiry_details")
@@ -86,176 +86,186 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "InquiryDetails.findByAssigned", query = "SELECT i FROM InquiryDetails i WHERE i.assigned = :assigned")
     , @NamedQuery(name = "InquiryDetails.findByAssignedTo", query = "SELECT i FROM InquiryDetails i WHERE i.assignedTo = :assignedTo")})
 public class InquiryDetails implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-//    @NotNull
-//    @Size(min = 1, max = 16)
-    @Column(name = "inquiry_id", length=16)
+    @NotNull
+    @Size(min = 1, max = 16)
+    @Column(name = "inquiry_id")
     private String inquiryId;
-//    @Size(max = 32)
-    @Column(name = "add1", length=32)
+    @Size(max = 32)
+    @Column(name = "add1")
     private String add1;
-//    @Size(max = 32)
-    @Column(name = "add2", length=32)
+    @Size(max = 32)
+    @Column(name = "add2")
     private String add2;
-//    @Size(max = 32)
-    @Column(name = "city", length=32)
+    @Size(max = 32)
+    @Column(name = "city")
     private String city;
-//    @Size(max = 6)
-    @Column(name = "pincode", length=6)
+    @Size(max = 6)
+    @Column(name = "pincode")
     private String pincode;
-//    @Size(max = 16)
-    @Column(name = "state", length=16)
+    @Size(max = 16)
+    @Column(name = "state")
     private String state;
-//    @Size(max = 16)
-    @Column(name = "passport_no", length=16)
+    @Size(max = 16)
+    @Column(name = "passport_no")
     private String passportNo;
-//    @Size(max = 16)
-    @Column(name = "add_passport1", length=16)
+    @Size(max = 16)
+    @Column(name = "add_passport1")
     private String addPassport1;
-//    @Size(max = 16)
-    @Column(name = "add_passport2", length=16)
+    @Size(max = 16)
+    @Column(name = "add_passport2")
     private String addPassport2;
-//    @Size(max = 8)
-    @Column(name = "per_10", length=8)
+    @Size(max = 8)
+    @Column(name = "per_10")
     private String per10;
-//    @Size(max = 8)
-    @Column(name = "passyear_10", length=8)
+    @Size(max = 8)
+    @Column(name = "passyear_10")
     private String passyear10;
-//    @Size(max = 8)
-    @Column(name = "per_12", length=8)
+    @Size(max = 8)
+    @Column(name = "per_12")
     private String per12;
-//    @Size(max = 8)
-    @Column(name = "passyear_12", length=8)
+    @Size(max = 8)
+    @Column(name = "passyear_12")
     private String passyear12;
-//    @Size(max = 16)
-    @Column(name = "stream_12", length=16)
+    @Size(max = 16)
+    @Column(name = "stream_12")
     private String stream12;
-//    @Size(max = 8)
-    @Column(name = "per_dip", length=8)
+    @Size(max = 8)
+    @Column(name = "per_dip")
     private String perDip;
-//    @Size(max = 8)
-    @Column(name = "passyear_dip", length=8)
+    @Size(max = 8)
+    @Column(name = "passyear_dip")
     private String passyearDip;
-//    @Size(max = 255)
-    @Column(name = "name_dip", length=255)
+    @Size(max = 255)
+    @Column(name = "name_dip")
     private String nameDip;
-//    @Size(max = 255)
-    @Column(name = "award_dip", length=255)
+    @Size(max = 255)
+    @Column(name = "award_dip")
     private String awardDip;
-//    @Size(max = 8)
-    @Column(name = "duration_dip", length=8)
+    @Size(max = 8)
+    @Column(name = "duration_dip")
     private String durationDip;
-//    @Size(max = 8)
-    @Column(name = "per_bach", length=8)
+    @Size(max = 8)
+    @Column(name = "per_bach")
     private String perBach;
-//    @Size(max = 8)
-    @Column(name = "passyear_bach", length=8)
+    @Size(max = 8)
+    @Column(name = "passyear_bach")
     private String passyearBach;
-//    @Size(max = 255)
-    @Column(name = "name_bach", length=255)
+    @Size(max = 255)
+    @Column(name = "name_bach")
     private String nameBach;
-//    @Size(max = 255)
-    @Column(name = "clg_bach", length=255)
+    @Size(max = 255)
+    @Column(name = "clg_bach")
     private String clgBach;
-//    @Size(max = 8)
-    @Column(name = "duration_bach", length=8)
+    @Size(max = 8)
+    @Column(name = "duration_bach")
     private String durationBach;
-//    @Size(max = 8)
-    @Column(name = "backlogs_bach", length=8)
+    @Size(max = 8)
+    @Column(name = "backlogs_bach")
     private String backlogsBach;
-//    @Size(max = 8)
-    @Column(name = "per_pg_dip", length=8)
+    @Size(max = 8)
+    @Column(name = "per_pg_dip")
     private String perPgDip;
-//    @Size(max = 8)
-    @Column(name = "passyear_pg_dip", length=8)
+    @Size(max = 8)
+    @Column(name = "passyear_pg_dip")
     private String passyearPgDip;
-//    @Size(max = 255)
-    @Column(name = "name_pg_dip", length=255)
+    @Size(max = 255)
+    @Column(name = "name_pg_dip")
     private String namePgDip;
-//    @Size(max = 255)
-    @Column(name = "award_pg_dip", length=255)
+    @Size(max = 255)
+    @Column(name = "award_pg_dip")
     private String awardPgDip;
-//    @Size(max = 8)
-    @Column(name = "duration_pg_dip", length=8)
+    @Size(max = 8)
+    @Column(name = "duration_pg_dip")
     private String durationPgDip;
-//    @Size(max = 8)
-    @Column(name = "per_masters", length=8)
+    @Size(max = 8)
+    @Column(name = "per_masters")
     private String perMasters;
-//    @Size(max = 8)
-    @Column(name = "passyear_masters", length=8)
+    @Size(max = 8)
+    @Column(name = "passyear_masters")
     private String passyearMasters;
-//    @Size(max = 255)
-    @Column(name = "name_masters", length=255)
+    @Size(max = 255)
+    @Column(name = "name_masters")
     private String nameMasters;
-//    @Size(max = 255)
-    @Column(name = "clg_masters", length=255)
+    @Size(max = 255)
+    @Column(name = "clg_masters")
     private String clgMasters;
-//    @Size(max = 8)
-    @Column(name = "duration_masters", length=8)
+    @Size(max = 8)
+    @Column(name = "duration_masters")
     private String durationMasters;
-//    @Size(max = 8)
-    @Column(name = "backlogs_masters", length=8)
+    @Size(max = 8)
+    @Column(name = "backlogs_masters")
     private String backlogsMasters;
-//    @Size(max = 8)
-    @Column(name = "toefl_score", length=8)
+    @Size(max = 8)
+    @Column(name = "toefl_score")
     private String toeflScore;
-//    @Size(max = 8)
-    @Column(name = "toefl_mock_score", length=8)
+    @Size(max = 8)
+    @Column(name = "toefl_mock_score")
     private String toeflMockScore;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "toefl_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date toeflDate;
-//    @Size(max = 8)
-    @Column(name = "ielts_score", length=8)
+    @Size(max = 8)
+    @Column(name = "ielts_score")
     private String ieltsScore;
-//    @Size(max = 8)
-    @Column(name = "ielts_mock_score", length=8)
+    @Size(max = 8)
+    @Column(name = "ielts_mock_score")
     private String ieltsMockScore;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "ielts_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ieltsDate;
-//    @Size(max = 8)
-    @Column(name = "gre_score", length=8)
+    @Size(max = 8)
+    @Column(name = "gre_score")
     private String greScore;
-//    @Size(max = 8)/
-    @Column(name = "gre_mock_score", length=8)
+    @Size(max = 8)
+    @Column(name = "gre_mock_score")
     private String greMockScore;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "gre_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date greDate;
-//    @Size(max = 8)
-    @Column(name = "gmat_score", length=8)
+    @Size(max = 8)
+    @Column(name = "gmat_score")
     private String gmatScore;
-//    @Size(max = 8)
-    @Column(name = "gmat_mock_score", length=8)
+    @Size(max = 8)
+    @Column(name = "gmat_mock_score")
     private String gmatMockScore;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "gmat_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date gmatDate;
-//    @Size(max = 8)
-    @Column(name = "sat_score", length=8)
+    @Size(max = 8)
+    @Column(name = "sat_score")
     private String satScore;
-//    @Size(max = 8)
-    @Column(name = "sat_mock_score", length=8)
+    @Size(max = 8)
+    @Column(name = "sat_mock_score")
     private String satMockScore;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "sat_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date satDate;
-//    @Size(max = 32)
-    @Column(name = "form_type", length=32)
+    @Size(max = 32)
+    @Column(name = "form_type")
     private String formType;
-//    @Size(max = 32)
-    @Column(name = "assigned", length=32)
+    @Size(max = 32)
+    @Column(name = "assigned")
     private String assigned;
-//    @Size(max = 32)
-    @Column(name = "assigned_to", length=32)
+    @Size(max = 32)
+    @Column(name = "assigned_to")
     private String assignedTo;
     @Lob
-//    @Size(max = 65535)
-    @Column(name = "note", length=65535)
+    @Size(max = 65535)
+    @Column(name = "note")
     private String note;
 
     public InquiryDetails() {
@@ -263,6 +273,15 @@ public class InquiryDetails implements Serializable {
 
     public InquiryDetails(String inquiryId) {
         this.inquiryId = inquiryId;
+    }
+
+    public InquiryDetails(String inquiryId, Date toeflDate, Date ieltsDate, Date greDate, Date gmatDate, Date satDate) {
+        this.inquiryId = inquiryId;
+        this.toeflDate = toeflDate;
+        this.ieltsDate = ieltsDate;
+        this.greDate = greDate;
+        this.gmatDate = gmatDate;
+        this.satDate = satDate;
     }
 
     public String getInquiryId() {

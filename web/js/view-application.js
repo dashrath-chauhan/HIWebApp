@@ -32,7 +32,7 @@ function myFunction(xml) {
             application_table += "<tr class='breakrow'>";
             application_table += "<th>" + y[i].getElementsByTagName('convertedBy')[0].innerHTML + "</th>";
             application_table += "<th>" + parseDate(y[i].getElementsByTagName('convertedOn')[0].innerHTML) + "</th>";
-            application_table += "<td class='id'>" + y[i].getElementsByTagName('inquiryId')[0].innerHTML + "</td>";
+            application_table += '<td class="id"><button type="button" name="hold" class="btn btn-outline-success my-2 my-sm-0" id="' + y[i].getElementsByTagName('inquiryId')[0].innerHTML+ '">' + y[i].getElementsByTagName('inquiryId')[0].innerHTML+ '</button></td>';
             application_table += "<td>" + y[i].getElementsByTagName('firstName')[0].innerHTML + " " + y[i].getElementsByTagName('lastName')[0].innerHTML + "</td>";
             application_table += "<td>" + y[i].getElementsByTagName('email')[0].innerHTML + "</td>";
             application_table += "<td>" + y[i].getElementsByTagName('mobile')[0].innerHTML + "</td>";
@@ -67,7 +67,7 @@ function parseDate(date) {
 
 $(document).ready(function () {
     $('#table-data').on("click", "td.id", function(e) {
-        var inquiryId = this.innerHTML;
+        var inquiryId = this.innerText;
         sessionStorage.setItem("inquiryId", inquiryId);
         window.location.replace("/" + pathArray[1] + "/jsp/inquiry-details.jsp");
     });
@@ -88,7 +88,7 @@ $(document).ready(function () {
                 loadXMLDoc();
             },
             error: function (err) {
-                alert("Failed to delete "+err);
+                alert("Failed to hold");
             }
         });
     });

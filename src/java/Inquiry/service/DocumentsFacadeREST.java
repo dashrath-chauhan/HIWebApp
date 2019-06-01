@@ -164,7 +164,7 @@ public class DocumentsFacadeREST extends AbstractFacade<Documents> {
         
         if(documentName.contentEquals("Passport size photograph")){
             String home = System.getProperty("user.home");
-            uploadFileLocation = home+"\\Documents\\NetBeansProjects\\HIRestApp\\web\\images\\"+inquiryId+"_Pic_"+fileName;
+            uploadFileLocation = home+"\\Documents\\NetBeansProjects\\HIWebApp\\web\\images\\"+inquiryId+"_Pic_"+fileName;
         } else {
             createSubDirectory(inquiryId);
             uploadFileLocation = "e://Heer International/Documents/"+inquiryId+"/"+documentName+"_"+fileName;
@@ -185,7 +185,7 @@ public class DocumentsFacadeREST extends AbstractFacade<Documents> {
             create(documents);
             documentSetFacadeREST.editSet(inquiryId,documentName);
 //            documentSetFacadeREST.edit(ds);
-            output += documentName+" uploaded.";
+            output += documentName+" uploaded. Name: "+documentName+"_"+fileName;
         } catch (FileNotFoundException ex) {
             output += "Failed to uploaded.";
             Logger.getLogger(DocumentsFacadeREST.class.getName()).log(Level.SEVERE, null, ex);

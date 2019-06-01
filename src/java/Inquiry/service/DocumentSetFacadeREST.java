@@ -117,7 +117,7 @@ public class DocumentSetFacadeREST extends AbstractFacade<DocumentSet> {
         dss = findBy("findByInquiryId",inquiryId);
         
         if(dss.size() > 0){
-            output = "Already prepared document set for "+inquiryId;
+            output = "Document set already exist for "+inquiryId+", Cannot create another document set";
         } else {
                 try {
                 for(int i=0; i<docs.length; i++){

@@ -7,7 +7,6 @@ var pathArray = window.location.pathname.split('/');
 var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
 //--------------------------------------------------------------------------------------
 window.addEventListener("load", function () {
-    console.log("1");
     loadXMLDoc();
 });
 
@@ -15,13 +14,10 @@ function loadXMLDoc() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log("2");
             myFunction(this);
-            console.log("3");
         }
     };
     xmlhttp.open("GET", base_url+"/webresources/followup.followup/getAllHoldInquries", true);
-    console.log("4");
     xmlhttp.send();
 }
 function myFunction(xml) {
@@ -30,12 +26,12 @@ function myFunction(xml) {
     var application_table = '';
     for (var i = 0; i < y.length; i++) {
             application_table += "<tr class='breakrow'>";
-            application_table += "<th>" + y[i].getElementsByTagName('convertedBy')[0].innerHTML + "</th>";
-            application_table += "<th>" + parseDate(y[i].getElementsByTagName('convertedOn')[0].innerHTML) + "</th>";
-            application_table += "<td class='id'>" + y[i].getElementsByTagName('inquiryId')[0].innerHTML + "</td>";
-            application_table += "<td>" + y[i].getElementsByTagName('firstName')[0].innerHTML + " " + y[i].getElementsByTagName('lastName')[0].innerHTML + "</td>";
-            application_table += "<td>" + y[i].getElementsByTagName('email')[0].innerHTML + "</td>";
+            application_table += '<td class="id">' + y[i].getElementsByTagName('inquiryId')[0].innerHTML+ '</button></td>';
+            application_table += "<td>" + y[i].getElementsByTagName('firstName')[0].innerHTML + " " + y[i].getElementsByTagName('lastName')[0].innerHTML +"</td>";
             application_table += "<td>" + y[i].getElementsByTagName('mobile')[0].innerHTML + "</td>";
+            application_table += "<td>" + y[i].getElementsByTagName('email')[0].innerHTML + "</td>";
+            application_table += "<td>" + parseDate(y[i].getElementsByTagName('convertedOn')[0].innerHTML) + "</td>";
+            application_table += '<td class="hold"><button type="button" name="hold" class="btn btn-dark my-2 my-sm-0" id="'+y[i].getElementsByTagName("inquiryId")[0].innerHTML+'">Re-initiate</button></td>';
             application_table += '<td class="delete"><button type="button" name="delete" class="btn btn-danger my-2 my-sm-0" id="'+y[i].getElementsByTagName("inquiryId")[0].innerHTML+'">Delete</button></td>';
             application_table += "</tr>";
             
@@ -68,6 +64,7 @@ function parseDate(date) {
 $(document).ready(function () {
     $('#table-data').on("click", "td.delete", function(e) {
         var inquiryId = this.firstChild.getAttribute('id');
+        console.log("I:"+inquiryId);
         var email = getCookieValue("email");
         $.ajax({
             data: { inquiryId  : inquiryId },   
@@ -78,7 +75,28 @@ $(document).ready(function () {
                 loadXMLDoc();
             },
             error: function (err) {
-                alert("Failed to delete "+err);
+                alert("Failed to delete ");
+            }
+        });
+    });
+});
+//-------------------------------------------------------------------------------
+//*****************************************************************************
+
+$(document).ready(function () {
+    $('#table-data').on("click", "td.hold", function(e) {
+        var inquiryId = this.firstChild.getAttribute('id');
+        var email = getCookieValue("email");
+        $.ajax({
+            data: { inquiryId  : inquiryId, email: email  },
+            type: "put",
+            url: base_url+"/webresources/inquiry.inquiry/reInitiate",
+            success: function (data) {
+                alert(data);
+                loadXMLDoc();
+            },
+            error: function (err) {
+                alert("Failed to reinitiate.");
             }
         });
     });

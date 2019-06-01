@@ -225,7 +225,7 @@ public class InquiryDetailsFacadeREST extends AbstractFacade<InquiryDetails> {
         System.out.println("1");
         inquiryDetails.setIeltsMockScore(mockIELTS);
         System.out.println("2");
-        Date IELTSDate = null;
+        Date IELTSDate = new Date();
         try {
             IELTSDate = (Date) formatter.parse(dateIELTS);
             inquiryDetails.setIeltsDate(new java.sql.Date(IELTSDate.getTime()));
@@ -235,7 +235,7 @@ public class InquiryDetailsFacadeREST extends AbstractFacade<InquiryDetails> {
         
 
         System.out.println("3");
-        Date TOEFLDate = null;
+        Date TOEFLDate = new Date();
         try {
             TOEFLDate = (Date) formatter.parse(dateTOEFL);
             inquiryDetails.setToeflDate(new java.sql.Date(TOEFLDate.getTime()));
@@ -251,7 +251,7 @@ public class InquiryDetailsFacadeREST extends AbstractFacade<InquiryDetails> {
         System.out.println("6");
         inquiryDetails.setGreMockScore(mockGRE);
         System.out.println("7");
-        Date GREDate = null;
+        Date GREDate = new Date();
         try {
             GREDate = (Date) formatter.parse(dateGRE);
             inquiryDetails.setGreDate(new java.sql.Date(GREDate.getTime()));
@@ -265,7 +265,7 @@ public class InquiryDetailsFacadeREST extends AbstractFacade<InquiryDetails> {
         System.out.println("9");
         inquiryDetails.setSatMockScore(mockSAT);
         System.out.println("10");
-        Date SATDate = null;
+        Date SATDate = new Date();
         try {
             SATDate = (Date) formatter.parse(dateSAT);
             inquiryDetails.setSatDate(new java.sql.Date(SATDate.getTime()));
@@ -281,7 +281,7 @@ public class InquiryDetailsFacadeREST extends AbstractFacade<InquiryDetails> {
         System.out.println("13");
         inquiryDetails.setGmatMockScore(mockGMAT);
         System.out.println("14");
-        Date GMATDate = null;
+        Date GMATDate = new Date();
         try {
             GMATDate = (Date) formatter.parse(dateGMAT);
             inquiryDetails.setGmatDate(new java.sql.Date(GMATDate.getTime()));
@@ -320,10 +320,8 @@ public class InquiryDetailsFacadeREST extends AbstractFacade<InquiryDetails> {
         return responseBuilder.build();
     }
     
-    public void removeByInquiryId(String inquiryId) {
-        List<Object> valueList = new ArrayList<>();
-        valueList.add(inquiryId);
-        super.removeBy("InquiryDetails.removeByInquiryId", inquiryId);
+    public void removeByInquiryId(InquiryDetails inquiryDetails) {
+        super.remove(inquiryDetails);
     }
     
     @GET

@@ -28,7 +28,10 @@ $(document).ready(function () {
     });
 });
 //*********************************************************************************************
-
+function getCookieValue(a) {
+        var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+        return b ? b.pop() : '';
+    }
 //*********************************************************************************************
 $(document).ready(function () {
     $(document).on('click', '#login-button', function (e) {
@@ -41,9 +44,12 @@ $(document).ready(function () {
             url: base_url+"/webresources/usermodel.users/login",
             success: function (data) {
                 var data = data.split(',');
-                document.cookie = "email=" + data[0] + "; path=/;domain=localhost;";
+                alert(data);
+                //document.cookie = "email=" + data[0] + "; path=/;domain=localhost;";
+                document.cookie = "email=" + data[0] + ";";// path=/;domain=localhost";
                 document.cookie = "password=" + data[1] + ";";
                 document.cookie = "isadmin=" + data[2] + ";";
+                
                 window.location.replace("/" + pathArray[1] + "/jsp/view-application.jsp");
             },
             error: function (data) {
@@ -165,9 +171,16 @@ function parseDate(date) {
 }
 
 //*****************************************************************************
-    
+    var newUser = document.getElementById('');
     newUser.onclick = function (e) {
         var pathArray = window.location.pathname.split('/');
         window.location.replace("/" + pathArray[1] + "/jsp/new-user.jsp");
     };
 //**************************************************************************************
+//
+//$(document).ready(function () {
+//    $(document).on('click', '#newUser', function (e) {
+//        var pathArray = window.location.pathname.split('/');
+//        window.location.replace("/" + pathArray[1] + "/jsp/new-user.jsp");
+//    });
+//});

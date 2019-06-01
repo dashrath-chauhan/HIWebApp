@@ -10,10 +10,6 @@ window.addEventListener("load", function () {
     loadXMLDoc();
 });
 function loadXMLDoc() {
-        
-        var today = new Date();
-        var parsed = parseDate(today);
-        //alert("v" + parsed);
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -89,7 +85,7 @@ $(document).ready(function () {
         document.getElementById("follow-form").style.display = "block";
         document.getElementById("followups-details").style.display = "block";
         displayFollowUpDetails(inquiryId);
-        loadXMLDoc(); 
+        //loadXMLDoc(); 
     });
 });
 //-------------------------------------------------------------------------------
@@ -127,29 +123,30 @@ $(document).ready(function () {
     $(document).on('click', '#followup-button', function (e) {
         var id = document.getElementById('inquiryId').value;
         var email = getCookieValue("email");
-        var type = document.getElementById('followup-type').value;
-        var status = document.getElementById('followup-status').value;
-        var strength = document.getElementById('strength').value;
         var description = document.getElementById('description').value;
         var nextDate = document.getElementById('getFollowUpsDate').value;
-
+        var d = new Date();
+        var lastDate = parseDate(d);
         $.ajax({
-            data: {id: id,
-                type: type, email: email,
-                status: status, strength: strength,
-                description: description, nextDate: nextDate
+            data: {id: id, email: email,
+                nextDate: nextDate, description: description, 
             },
-            type: "post",
-            url: base_url+"/webresources/followup.followup/createFollowUp",
+            type: "POST",
+            url: base_url+"/webresources/followup.followupdetails/detailedFollowUp",
             success: function (data) {
                 //alert(data);
-                document.getElementById('success-alert').textContent = "Inquiry Id: "+data;
+                console.log(1);
+                document.getElementById('success-alert').textContent = data;
+                console.log(2);
                 document.getElementById('success-alert').style.display = "block";
+                console.log(3);
                 var frm = document.getElementsByName('follow-form')[0];
+                console.log(4);
                 frm.reset();
             },
             error: function (err) {
                 alert(err);
+                console.log(err);
             }
         });
     });
@@ -191,8 +188,8 @@ $(document).ready(function () {
             url: base_url+"/webresources/usermodel.users/completeAfolowUpReport",
             success: function (data) {
                 //alert("success");
-                document.getElementById('success-alert').textContent = data;
-                document.getElementById('success-alert').style.display = "block";
+                document.getElementById('success-report').textContent = data;
+                document.getElementById('success-report').style.display = "block";
                 var frm = document.getElementsByName('inquiry-form')[0];
                 frm.reset();
             },

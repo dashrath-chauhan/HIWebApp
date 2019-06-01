@@ -186,7 +186,7 @@ public class InquiryFacadeREST extends AbstractFacade<Inquiry> {
         fpd.setDescription("Inquiry Created...");
         followUpDetailsFacadeREST.create(fpd);
         
-        output = "Inquiry Id: " + inquiry.getId() + " created...";
+        output = "Inquiry Id: " + inquiry.getId() + ", created...";
         return output;
     }
 
@@ -213,7 +213,7 @@ public class InquiryFacadeREST extends AbstractFacade<Inquiry> {
             java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
             inquiry.setDateTime(date);
             edit(inquiry);
-            output = "Inquiry Id" + inquiry.getId() + " updated...";
+            output = "Inquiry Id: " + inquiry.getId() + ", updated...";
         } catch (Exception e) {
             output = "Failed to update. Invalid Id...";
         }
@@ -229,7 +229,7 @@ public class InquiryFacadeREST extends AbstractFacade<Inquiry> {
         try {
             Inquiry inquiry = find(id);
             remove(inquiry);
-            output = "Inquiry Id" + inquiry.getId() + " deleted...";
+            output = "Inquiry Id: " + inquiry.getId() + ", deleted...";
         } catch (Exception e) {
             output = "Invalid Id...";
         }
@@ -287,7 +287,7 @@ public class InquiryFacadeREST extends AbstractFacade<Inquiry> {
             inquiry.setIsInquiry("N");
             followUpFacadeREST.edit(fp);
             edit(inquiry);
-            output = "Inquiry Id: " + fp.getInquiryId() + " ,is converted to Application...";
+            output = "Inquiry Id: " + fp.getInquiryId() + ", is converted to Application...";
         } catch (Exception e) {
             output = "Failed to create Application";
         }
@@ -465,16 +465,43 @@ public class InquiryFacadeREST extends AbstractFacade<Inquiry> {
             inquiry.setIsInquiry("IH");
             followUpFacadeREST.edit(fp);
             edit(inquiry);
-            output = "Inquiry Id: " + fp.getInquiryId() + " ,is on hold for some time...";
+            output = "Inquiry Id: " + fp.getInquiryId() + ", is on hold for some time...";
         } catch (Exception e) {
             output = "Failed to put On Hold";
         }
         return output;
     }
     
-    public void removeByInquiryId(String inquiryId) {
-        List<Object> valueList = new ArrayList<>();
-        valueList.add(inquiryId);
-        super.removeBy("Inquiry.removeByInquiryId", inquiryId);
+    //update inquiry
+    @PUT
+    @Path("reInitiate")
+    @Produces("text/plain")
+    @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
+    public String reInitiate(@FormParam("inquiryId") String id, @FormParam("email") String email) {
+        String output = "";
+        try {
+            Inquiry inquiry = find(id);
+            FollowUp fp = followUpFacadeREST.find(id);
+            System.out.println("Id:" + fp);
+            fp.setLeadType("I");
+            Users user = usersFacadeREST.findBy("findByEmail", email).get(0);
+            fp.setConvertedBy(user.getName());
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            System.out.println(dateFormat.format(date));
+            fp.setConvertedOn(date);
+            fp.setEmail(inquiry.getEmailId());
+            inquiry.setIsInquiry("Y");
+            followUpFacadeREST.edit(fp);
+            edit(inquiry);
+            output = "Inquiry Id: " + fp.getInquiryId() + ", is reinitiated as Inquiry...";
+        } catch (Exception e) {
+            output = "Failed to reinitiate....";
+        }
+        return output;
+    }
+    
+    public void removeByInquiryId(Inquiry iq) {
+        super.remove(iq);
     }
 }

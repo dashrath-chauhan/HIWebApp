@@ -130,24 +130,38 @@ public class FollowupDetailsFacadeREST extends AbstractFacade<FollowupDetails> {
     @Path("detailedFollowUp")
     @Produces("text/plain")
     @Consumes({"application/xml", "application/json", "application/x-www-form-urlencoded"})
-    public String detailedFollowUp(@FormParam("id") String id, @FormParam("email") String email, @FormParam("lastDate") Date lastDate,
-            @FormParam("nextDate") Date nextDate, @FormParam("description") String description) {
+    public String detailedFollowUp(@FormParam("id") String id,
+            @FormParam("email") String email,
+            @FormParam("nextDate") Date nextDate,
+            @FormParam("description") String description) {
         String output = "";
+        System.out.println("1");
         List<FollowupDetails> fpd = findBy("findByInquiryId", id);
         int counter = counter = fpd.size() + 1;
         FollowupDetails fpDetails = new FollowupDetails();
+        System.out.println("1");
         FollowupDetailsPK fpDetailsPK = new FollowupDetailsPK();
-        
-        fpDetailsPK.setInquiryId(id);
-        fpDetailsPK.setCounter(counter);
-        fpDetails.setFollowupDetailsPK(fpDetailsPK);
-        fpDetails.setDescription(description);
-        fpDetails.setEmail(email);
-        fpDetails.setLastFollowupDate(lastDate);
-        fpDetails.setNextFollowupDate(nextDate);
-        create(fpDetails);
-
-        output = fpDetails.getFollowupDetailsPK().getInquiryId() + " follow-up updated...";
+        Date lastDate = new Date();
+        try {
+            System.out.println("1"+id);
+            fpDetailsPK.setInquiryId(id);
+            System.out.println("1"+counter);
+            fpDetailsPK.setCounter(counter);
+            System.out.println("1"+fpDetailsPK);
+            fpDetails.setFollowupDetailsPK(fpDetailsPK);
+            System.out.println("1"+description);
+            fpDetails.setDescription(description);
+            System.out.println("1"+email);
+            fpDetails.setEmail(email);
+            System.out.println("1"+lastDate);
+            fpDetails.setLastFollowupDate(lastDate);
+            System.out.println("1"+nextDate);
+            fpDetails.setNextFollowupDate(nextDate);
+            create(fpDetails);
+            output = "Followup for Inquiry/Application: "+fpDetails.getFollowupDetailsPK().getInquiryId() + " updated...";
+        } catch(Exception e){
+            output = e.getLocalizedMessage().toString();
+        }
         return output;
     }
     
@@ -175,9 +189,7 @@ public class FollowupDetailsFacadeREST extends AbstractFacade<FollowupDetails> {
         return fpDetails;
     }
     
-    public void removeByInquiryId(String inquiryId) {
-        List<Object> valueList = new ArrayList<>();
-        valueList.add(inquiryId);
-        super.removeBy("FollowupDetails.removeByInquiryId", inquiryId);
+    public void removeByInquiryId(FollowupDetails followupDetails) {
+        super.remove(followupDetails);
     }
 }

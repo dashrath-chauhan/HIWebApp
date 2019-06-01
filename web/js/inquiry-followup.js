@@ -167,14 +167,14 @@ $(document).ready(function () {
             url: base_url+"/webresources/usermodel.users/IfolowUpReport",
             success: function (data) {
                 //alert("success");
-                document.getElementById('success-alert').textContent = data;
-                document.getElementById('success-alert').style.display = "block";
+                document.getElementById('success-report').textContent = data;
+                document.getElementById('success-report').style.display = "block";
                 var frm = document.getElementsByName('inquiry-form')[0];
                 frm.reset();
             },
             error: function (err) {
                 //alert(err);
-                document.getElementById('success-alert').style.display = "none";
+                document.getElementById('alert-info').style.display = "none";
             }
         });
     });
@@ -199,7 +199,7 @@ $(document).ready(function () {
             },
             error: function (err) {
                 //alert(err);
-                document.getElementById('success-alert').style.display = "none";
+                document.getElementById('alert-info').style.display = "none";
             }
         });
     });

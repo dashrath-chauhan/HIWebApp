@@ -11,14 +11,16 @@ var id;
 //--------------------------------------------------------------------------------------
 //*********************************************************************************************
 $(document).ready(function () {
+    document.getElementById('filter').disabled = true;
     if (document.getElementById('filter').value.length == 0 || document.getElementById('filter').value.toString().length == 0) {
         id = sessionStorage.getItem("inquiryId");
+        var x = id;
         document.getElementById('filter').value = id;
-        //setTimeout(sessionStorage.setItem("inquiryId",""),"10000")
     } else {
         id = document.getElementById('filter').value;
     }
     $(document).on('click', '#send', function (e) {
+        
     e.preventDefault();
     
     var xmlhttp = new XMLHttpRequest();
@@ -37,7 +39,6 @@ $(document).ready(function () {
             document.getElementById('gender').value = x.getElementsByTagName('gender')[0].innerHTML;
             document.getElementById('countryPreference').value = x.getElementsByTagName('country')[0].innerHTML;
             loadAnotherDoc(id);
-            
         }
     };
     xmlhttp.open("GET", base_url+"/webresources/inquiry.inquiry/getInquiryById/" + id, true);
@@ -75,68 +76,188 @@ function loadAnotherDoc(id) {
         if (this.readyState == 4 && this.status == 200) {
             var xmlDoc = this.responseXML;
             var x = xmlDoc.getElementsByTagName("inquiryDetails")[0];
-            var date1 = parseDate(x.getElementsByTagName('ieltsDate')[0].innerHTML);
-            var date2 = parseDate(x.getElementsByTagName('gmatDate')[0].innerHTML);
-            var date3 = parseDate(x.getElementsByTagName('satDate')[0].innerHTML);
-            var date4 = parseDate(x.getElementsByTagName('toeflDate')[0].innerHTML);
-            var date5 = parseDate(x.getElementsByTagName('greDate')[0].innerHTML);
-
-            document.getElementById('dateTOEFL').value = date4;
-            document.getElementById('dateIELTS').value = date1;
-            document.getElementById('dateGRE').value = date5;
-            document.getElementById('dateGMAT').value = date2;
-            document.getElementById('dateSAT').value = date3;
-            document.getElementById('perPG').value = x.getElementsByTagName('perPgDip')[0].innerHTML;
-            document.getElementById('formType').value = x.getElementsByTagName('formType')[0].innerHTML;
-            document.getElementById('passYearPG').value = x.getElementsByTagName('passyearPgDip')[0].innerHTML;
-            document.getElementById('assigned').value = x.getElementsByTagName('assigned')[0].innerHTML;
-            document.getElementById('namePG').value = x.getElementsByTagName('namePgDip')[0].innerHTML;
-            document.getElementById('assignedTo').value = x.getElementsByTagName('assignedTo')[0].innerHTML;
-            document.getElementById('awardingBodyPG').value = x.getElementsByTagName('awardPgDip')[0].innerHTML;
-            document.getElementById('add1').value = x.getElementsByTagName('add1')[0].innerHTML;
-            document.getElementById('durationPG').value = x.getElementsByTagName('durationPgDip')[0].innerHTML;
-            document.getElementById('add2').value = x.getElementsByTagName('add2')[0].innerHTML;
-            document.getElementById('perMasters').value = x.getElementsByTagName('perMasters')[0].innerHTML;
-            document.getElementById('cityTown').value = x.getElementsByTagName('city')[0].innerHTML;
-            document.getElementById('passYearMasters').value = x.getElementsByTagName('passyearMasters')[0].innerHTML;
-            document.getElementById('state').value = x.getElementsByTagName('state')[0].innerHTML;
-            document.getElementById('degreeNameMasters').value = x.getElementsByTagName('nameMasters')[0].innerHTML;
-            document.getElementById('pin').value = x.getElementsByTagName('pincode')[0].innerHTML;
-            document.getElementById('collegeMasters').value = x.getElementsByTagName('clgMasters')[0].innerHTML;
-            document.getElementById('passport').value = x.getElementsByTagName('passportNo')[0].innerHTML;
-            document.getElementById('durationMasters').value = x.getElementsByTagName('durationMasters')[0].innerHTML;
-            document.getElementById('passport1').value = x.getElementsByTagName('addPassport1')[0].innerHTML;
-            document.getElementById('backlogsMasters').value = x.getElementsByTagName('backlogsMasters')[0].innerHTML;
-            document.getElementById('passport2').value = x.getElementsByTagName('addPassport2')[0].innerHTML;
-            document.getElementById('scoreTOEFL').value = x.getElementsByTagName('toeflScore')[0].innerHTML;
-            document.getElementById('per10').value = x.getElementsByTagName('per10')[0].innerHTML;
-            document.getElementById('mockTOEFL').value = x.getElementsByTagName('toeflMockScore')[0].innerHTML;
-            document.getElementById('passYear10').value = x.getElementsByTagName('passyear10')[0].innerHTML;
-            document.getElementById('per12').value = x.getElementsByTagName('per12')[0].innerHTML;
-            document.getElementById('scoreIELTS').value = x.getElementsByTagName('ieltsScore')[0].innerHTML;
-            document.getElementById('passYear12').value = x.getElementsByTagName('passyear12')[0].innerHTML;
-            document.getElementById('mockIELTS').value = x.getElementsByTagName('ieltsMockScore')[0].innerHTML;
-            document.getElementById('stream12').value = x.getElementsByTagName('stream12')[0].innerHTML;
-            document.getElementById('perDiploma').value = x.getElementsByTagName('perDip')[0].innerHTML;
-            document.getElementById('scoreGRE').value = x.getElementsByTagName('greScore')[0].innerHTML;
-            document.getElementById('passYearDiploma').value = x.getElementsByTagName('passyearDip')[0].innerHTML;
-            document.getElementById('mockGRE').value = x.getElementsByTagName('greMockScore')[0].innerHTML;
-            document.getElementById('nameDiploma').value = x.getElementsByTagName('nameDip')[0].innerHTML;
-            document.getElementById('awardingBodyDiploma').value = x.getElementsByTagName('awardDip')[0].innerHTML;
-            document.getElementById('scoreGMAT').value = x.getElementsByTagName('gmatScore')[0].innerHTML;
-            document.getElementById('durationDiploma').value = x.getElementsByTagName('durationDip')[0].innerHTML;
-            document.getElementById('mockGMAT').value = x.getElementsByTagName('gmatMockScore')[0].innerHTML;
-            document.getElementById('perBachelor').value = x.getElementsByTagName('perBach')[0].innerHTML;
-            document.getElementById('passYearBachelor').value = x.getElementsByTagName('passyearBach')[0].innerHTML;
-            document.getElementById('scoreSAT').value = x.getElementsByTagName('satScore')[0].innerHTML;
-            document.getElementById('degreeNameBachelor').value = x.getElementsByTagName('nameBach')[0].innerHTML;
-            document.getElementById('mockSAT').value = x.getElementsByTagName('satMockScore')[0].innerHTML;
-            document.getElementById('collegeBachelor').value = x.getElementsByTagName('clgBach')[0].innerHTML;
-            document.getElementById('durationBachelor').value = x.getElementsByTagName('durationBach')[0].innerHTML;
-            document.getElementById('specialNote').value = x.getElementsByTagName('note')[0].innerHTML;
-            document.getElementById('backlogsBachelor').value = x.getElementsByTagName('backlogsBach')[0].innerHTML;
-            //alert(id);
-            
+            var d = x.childNodes;
+            var date1; var date2; var date3; var date4; var date5;
+               
+            if(x.getElementsByTagName('satDate')[0]){
+                date5 = parseDate(x.getElementsByTagName('satDate')[0].innerHTML);
+                document.getElementById('dateSAT').value = date5;
+            } else {
+                date5 = parseDate(new Date());
+                document.getElementById('dateSAT').value = date5;
+            }     
+            if(x.getElementsByTagName('perPgDip')[0]){
+                document.getElementById('perPG').value = x.getElementsByTagName('perPgDip')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('formType')[0]){
+                document.getElementById('formType').value = x.getElementsByTagName('formType')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('passyearPgDip')[0]){
+                document.getElementById('passYearPG').value = x.getElementsByTagName('passyearPgDip')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('assigned')[0]){
+                document.getElementById('assigned').value = x.getElementsByTagName('assigned')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('namePgDip')[0]){
+                document.getElementById('namePG').value = x.getElementsByTagName('namePgDip')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('assignedTo')[0]){
+                document.getElementById('assignedTo').value = x.getElementsByTagName('assignedTo')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('awardPgDip')[0]){
+                document.getElementById('awardingBodyPG').value = x.getElementsByTagName('awardPgDip')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('add1')[0]){
+                document.getElementById('add1').value = x.getElementsByTagName('add1')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('durationPgDip')[0]){
+                document.getElementById('durationPG').value = x.getElementsByTagName('durationPgDip')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('add2')[0]){
+                document.getElementById('add2').value = x.getElementsByTagName('add2')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('perMasters')[0]){
+                document.getElementById('perMasters').value = x.getElementsByTagName('perMasters')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('city')[0]){
+                document.getElementById('cityTown').value = x.getElementsByTagName('city')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('passyearMasters')[0]){
+                document.getElementById('passYearMasters').value = x.getElementsByTagName('passyearMasters')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('state')[0]){
+                document.getElementById('state').value = x.getElementsByTagName('state')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('nameMasters')[0]){
+                document.getElementById('degreeNameMasters').value = x.getElementsByTagName('nameMasters')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('pincode')[0]){
+                document.getElementById('pin').value = x.getElementsByTagName('pincode')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('clgMasters')[0]){
+                document.getElementById('collegeMasters').value = x.getElementsByTagName('clgMasters')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('passportNo')[0]){
+                document.getElementById('passport').value = x.getElementsByTagName('passportNo')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('durationMasters')[0]){
+                document.getElementById('durationMasters').value = x.getElementsByTagName('durationMasters')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('addPassport1')[0]){
+                document.getElementById('passport1').value = x.getElementsByTagName('addPassport1')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('backlogsMasters')[0]){
+                document.getElementById('backlogsMasters').value = x.getElementsByTagName('backlogsMasters')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('addPassport2')[0]){
+                document.getElementById('passport2').value = x.getElementsByTagName('addPassport2')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('toeflScore')[0]){
+                document.getElementById('scoreTOEFL').value = x.getElementsByTagName('toeflScore')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('per10')[0]){
+                document.getElementById('per10').value = x.getElementsByTagName('per10')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('toeflMockScore')[0]){
+                document.getElementById('mockTOEFL').value = x.getElementsByTagName('toeflMockScore')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('passyear10')[0]){
+                document.getElementById('passYear10').value = x.getElementsByTagName('passyear10')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('per12')[0]){
+                document.getElementById('per12').value = x.getElementsByTagName('per12')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('ieltsScore')[0]){
+                document.getElementById('scoreIELTS').value = x.getElementsByTagName('ieltsScore')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('passyear12')[0]){
+                document.getElementById('passYear12').value = x.getElementsByTagName('passyear12')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('ieltsMockScore')[0]){
+                document.getElementById('mockIELTS').value = x.getElementsByTagName('ieltsMockScore')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('stream12')[0]){
+                document.getElementById('stream12').value = x.getElementsByTagName('stream12')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('perDip')[0]){
+                document.getElementById('perDiploma').value = x.getElementsByTagName('perDip')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('greScore')[0]){
+                document.getElementById('scoreGRE').value = x.getElementsByTagName('greScore')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('passyearDip')[0]){
+                document.getElementById('passYearDiploma').value = x.getElementsByTagName('passyearDip')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('greMockScore')[0]){
+                document.getElementById('mockGRE').value = x.getElementsByTagName('greMockScore')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('nameDip')[0]){
+                document.getElementById('nameDiploma').value = x.getElementsByTagName('nameDip')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('awardDip')[0]){
+                document.getElementById('awardingBodyDiploma').value = x.getElementsByTagName('awardDip')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('gmatScore')[0]){
+                document.getElementById('scoreGMAT').value = x.getElementsByTagName('gmatScore')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('durationDip')[0]){
+                document.getElementById('durationDiploma').value = x.getElementsByTagName('durationDip')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('gmatMockScore')[0]){
+                document.getElementById('mockGMAT').value = x.getElementsByTagName('gmatMockScore')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('passyearBach')[0]){
+                document.getElementById('passYearBachelor').value = x.getElementsByTagName('passyearBach')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('satScore')[0]){
+                document.getElementById('scoreSAT').value = x.getElementsByTagName('satScore')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('nameBach')[0]){
+                document.getElementById('degreeNameBachelor').value = x.getElementsByTagName('nameBach')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('satMockScore')[0]){
+                document.getElementById('mockSAT').value = x.getElementsByTagName('satMockScore')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('clgBach')[0]){
+                document.getElementById('collegeBachelor').value = x.getElementsByTagName('clgBach')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('durationBach')[0]){
+                document.getElementById('durationBachelor').value = x.getElementsByTagName('durationBach')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('note')[0]){
+                document.getElementById('specialNote').value = x.getElementsByTagName('note')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('backlogsBach')[0]){
+                document.getElementById('backlogsBachelor').value = x.getElementsByTagName('backlogsBach')[0].innerHTML;
+            }
+            if(x.getElementsByTagName('ieltsDate')[0]){
+                date1 = parseDate(x.getElementsByTagName('ieltsDate')[0].innerHTML);
+                document.getElementById('dateIELTS').value = date1;
+            } else {
+                date1 = parseDate(new Date());
+                document.getElementById('dateIELTS').value = date1;
+            }
+            if(x.getElementsByTagName('toeflDate')[0]){
+                date2 = parseDate(x.getElementsByTagName('toeflDate')[0].innerHTML);
+                document.getElementById('dateTOEFL').value = date2;
+            } else {
+                date2 = parseDate(new Date());
+                document.getElementById('dateTOEFL').value = date2;
+            }
+            if(x.getElementsByTagName('gmatDate')[0]){
+                date3 = parseDate(x.getElementsByTagName('gmatDate')[0].innerHTML);
+                document.getElementById('dateGMAT').value = date3;
+            } else {
+                date3 = parseDate(new Date());
+                document.getElementById('dateGMAT').value = date3;
+            } 
+            if(x.getElementsByTagName('greDate')[0]){
+                date4 = parseDate(x.getElementsByTagName('greDate')[0].innerHTML);
+                document.getElementById('dateGRE').value = date4;
+            } else {
+                date4 = parseDate(new Date());
+                document.getElementById('dateGRE').value = date4;
+            }
         }
     };
     xmlhttp.open("GET", base_url+"/webresources/inquiry.inquirydetails/getInquiryById/" + id, true);
@@ -298,4 +419,8 @@ function loadPic(id) {
 }
 ;
 
-//*********************************************************************************************
+//*********************************************************
+function getCookieValue(a) {
+        var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+        return b ? b.pop() : '';
+    }
